@@ -1,0 +1,74 @@
+.username-text{
+    font-family: tahoma, sans-serif;
+    font-size: medium;
+    font-weight: 500;
+}
+
+.comment-text{
+    font-family: tahoma,sans-serif;
+    font-size: small;
+    font-weight: 400;
+}
+
+.time{
+    font-family: tahoma,sans-serif;
+    font-size: xx-small;
+    font-weight: 400;
+}
+
+.comment-group{
+    /*border: 2px solid gray;*/
+    padding: 5px;
+    margin-bottom: 5px;
+}
+#scroll_bar{
+    overflow-y: scroll;
+    max-height: 20em;
+}
+
+.project-nav{
+    border: 2px solid gray;
+    padding: 2em;
+}
+.clear-fix{
+
+}
+.pDescription{
+    font-family: tahoma;
+    font-size: small;
+}
+.box{
+    padding: 10px;
+    font: tahoma;
+    font-family: tahoma;
+    font-size: small;
+    font-weight: bold;
+}
+
+#section{
+    /*border: 2px solid darkgray;*/
+    padding: 2em;
+    /*background-color: lightgray;*/
+}
+
+@keyframes gradualchange{
+    from{background-color: white;}
+    to{background-color: lightgray;}
+}
+
+.product_display{
+    padding: 2em;
+    height: 600px;
+    transition-timing-function: linear;
+}
+.product_display:hover{
+    background-color: lightgray;
+    text-decoration: none;
+    transition-delay: 1s;
+    animation-name: gradualchange;
+    animation-duration: 1.5s;
+}
+
+.form-section{
+    padding: 2em;
+}

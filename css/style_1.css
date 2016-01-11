@@ -1,0 +1,66 @@
+/*body{
+    padding-top: 4em;
+}*/
+.first-row{
+    margin-top: 4em;
+}
+.crimson{
+    color: crimson;
+}
+.center-align{
+    text-align: center;
+}
+.show-projects{
+	border: 3px solid gray;
+	padding: 20px;
+}
+.clear{
+	height: 2px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-top: 2px solid gray;
+	border-bottom: 2px solid black;
+}
+.text-editor{
+	display: none;
+}
+.iframe{
+	width: 30em;
+	height: 10em;
+}
+.output-div{
+	border: 1px solid gray;
+}
+#tags{
+    text-decoration: none;
+    display: inline-block;
+}
+.small-button{
+    height: 20px;
+    text-align: center;
+}
+.box-type{
+    width: 15em;
+    border: 2px solid gray;
+    padding: 5px;
+    background-color: lightgrey;
+}
+.plain-anchor{
+    text-decoration: none;
+}
+
+.related_blog_iframe{
+    width: 100%;
+    border: 3px solid darkgray;
+    height: 300px;
+    background-color: whitesmoke;
+    font-size: 12px;
+    font-family: tahoma, sans-serif;
+    padding: 2px 300px 2px 2px;
+    font-color: black;
+}
+
+.related_blog_link{
+    font-size: smaller;
+    font-color: lightblue;
+}
