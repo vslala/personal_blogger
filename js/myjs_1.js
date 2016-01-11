@@ -1,4 +1,5 @@
 $(document).ready(function(){ 
+
     base_url = "http://varunshrivastava.azurewebsites.net/";
     
     

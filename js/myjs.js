@@ -1,4 +1,14 @@
 $(document).ready(function(){
+    if (window.location.href.indexOf("blog") > -1)
+        $('html, body').prepend('<a href="#" class="back-to-top"></a>');
+
+    $('a.back-to-top').click(function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 700);
+        return false;
+    });
+
     $('#posted_on').val(getCurrentDate());
 
 	$("body").on("click", "#project_delete", function(event){
