@@ -177,12 +177,17 @@ class Site extends CI_Controller{
     
     public function blog($id, $heading){
         $this->load->helper('cookie');
-    
+        
+        $date_posted = NULL;
         $heading = str_replace('-', ' ', $heading);
         $data['title'] = $heading;
         $data['blog'] = $this->blog_model->get_blog($id);
+        if(isset($data['blog']['0']['posted_on']))
+            $date_posted = $data['blog']['0']['posted_on'];
+        else
+            $date_posted = $data['blog'][0]['created_at'];
         $data['cover_heading'] = $data['blog'][0]['heading'];
-        $data['cover_subheading'] = "Posted by <a href='#'>Varun Shrivastava</a> ".$data['blog'][0]['created_at'];
+        $data['cover_subheading'] = "Posted by <a href='#'>Varun Shrivastava</a> ".$date_posted;
         $data['uri'] = current_url();
         $data['tags'] = $this->blog_model->get_blog_tags($data['blog'][0]['id']);
 
