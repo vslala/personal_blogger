@@ -41,21 +41,11 @@
                 </div>
             </div>
             <div class="col-md-2 col-lg-2 col-sm-2">
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- MyAdsenseAd -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-3963876904167425"
-                         data-ad-slot="6497229790"
-                         data-ad-format="auto"></ins>
-                    <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-
+                
                 <!-- Most Viewed Blogs -->
-                <div class="container">
+                <!-- <div class="container"> -->
                     <?php if (isset($mostViewed[0])): ?>
-                    <h3><u>Most Viewed</u></h3>
+                    <center><h3><u><i>Most Viewed</i></u></h3></center>
                         <?php foreach ($mostViewed as $mv): ?>
                             <?php 
                                 $slug = null;
@@ -67,7 +57,7 @@
                                 $blogUrl = base_url().'site/blog/'.$mv['id'].'/'.$slug
                             ?>
                         <a href="<?= $blogUrl; ?>" class="most-viewed-anchor">
-                        <div class="row">
+                        <div class="row" style="border-left: 1px solid lightgrey;">
                             <div class="col-md-12" style="width: 300px;">
                                 <div class="most-viewed-blogs">
                                     <img src="<?= $mv['cover_image']; ?>" class="img img-responsive thumbnail" width="300px"/>
@@ -79,7 +69,18 @@
                         </a>
                         <?php endforeach; ?>
                     <?php endif; ?>
-                </div>
+                <!-- </div> -->
+
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- MyAdsenseAd -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-3963876904167425"
+                         data-ad-slot="6497229790"
+                         data-ad-format="auto"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
 
         </div>

@@ -19,6 +19,7 @@ class Blog_Model extends CI_Model{
     }
     
     public function get_most_viewed_blog($blogCount = 3){
+        $this->db->select('id, heading, cover_image, slug, views');
         $this->db->order_by('views', 'DESC');
         $this->db->limit($blogCount);
         $query = $this->db->get('blogs');

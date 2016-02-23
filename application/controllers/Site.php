@@ -183,7 +183,7 @@ class Site extends CI_Controller{
         $heading = str_replace('-', ' ', $heading);
         $data['title'] = $heading;
         $data['blog'] = $this->blog_model->get_blog($id);
-        $data['mostViewed'] = $this->blog_model->get_most_viewed_blog(3);
+        $data['mostViewed'] = $this->blog_model->get_most_viewed_blog(5);
         if(isset($data['blog']['0']['posted_on']))
             $date_posted = $data['blog']['0']['posted_on'];
         else
