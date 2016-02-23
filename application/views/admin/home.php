@@ -12,7 +12,11 @@
                     <div class="editLink pull-right small">
                         <a href="<?= site_url('admin/edit'.'/'.$b['id'].'/'.url_title($b['heading']).'/'.$b['sort']); ?>" class="btn btn-warning btn-sm">edit</a> &nbsp; | &nbsp;
                     </div>                 
-                    <div class="help-block small">Created At: <?= $b['created_at']; ?></div>
+                    <div class="help-block small">
+                        <span>Views: <?= $b['views']; ?></span>
+                        <br />
+                        <span>Created At: <?= $b['created_at']; ?></span>                        
+                    </div>
                     <div class="pull-left">
                         <div class="badge"><?= $b['sort']; ?></div>
                     </div>                   

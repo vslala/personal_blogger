@@ -177,17 +177,19 @@ class Site extends CI_Controller{
     
     public function blog($id, $heading){
         $this->load->helper('cookie');
+        $this->load->library('markdown');
         
         $date_posted = NULL;
         $heading = str_replace('-', ' ', $heading);
         $data['title'] = $heading;
         $data['blog'] = $this->blog_model->get_blog($id);
+        $data['mostViewed'] = $this->blog_model->get_most_viewed_blog(3);
         if(isset($data['blog']['0']['posted_on']))
             $date_posted = $data['blog']['0']['posted_on'];
         else
             $date_posted = $data['blog'][0]['created_at'];
         $data['cover_heading'] = $data['blog'][0]['heading'];
-        $data['cover_subheading'] = "Posted by <a href='#'>Varun Shrivastava</a> ".$date_posted;
+        $data['cover_subheading'] = "Posted by <a href='#'>".$data['blog'][0]['author']."</a> ".$date_posted;
         $data['uri'] = current_url();
         $data['tags'] = $this->blog_model->get_blog_tags($data['blog'][0]['id']);
 
@@ -280,5 +282,43 @@ class Site extends CI_Controller{
         $this->load->view('site/portfolio',  $data);
         $this->load->view('layout/_footer', $data);
     }
+
+    
+    public function listview($listId = null){
+        $this->load->helper('form');
+        $this->load->model('sap_model');
+        if (! empty($listId))
+            $data['listId'] = $listId;
+        $data['listItems'] = $this->sap_model->getListItems($listId);
+        
+        $data['title'] = "Couples List";
+
+        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_top_nav', $data);
+        $this->load->view('sap/list',  $data);
+        $this->load->view('layout/_footer', $data);
+    }
+
+    public function getListItems($listId = null){
+        if (! empty($listId))
+            $data['listId'] = $listId;
+        $data['listItems'] = $this->sap_model->getListItems($listId);
+
+        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_top_nav', $data);
+        $this->load->view('sap/list',  $data);
+        $this->load->view('layout/_footer', $data);
+    }
+
+    public function authorLogin(){
+        if ($this->session->userdata('isLogged'))
+            redirect('author/home');
+        $data['title'] = 'Login';
+
+        $this->load->view('layout/_author_header', $data);
+        $this->load->view('author/login', $data);
+        // $this->load->view('layout/_footer');
+    }
+
     
 }

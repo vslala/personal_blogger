@@ -1,7 +1,6 @@
 <div class="container">   
     <div class="row first-row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+        <div class="col-md-9">
             <?php if(isset($confirmation)): ?>
             <div class="alert-success">
                 <?php echo $confirmation; ?>
@@ -26,7 +25,7 @@
                                 <label class="form-label col-md-4">Content:</label>
                                 <div class="col-md-8">
                                   
-                                    <textarea id="text_editor" class="text-editor" rows="10" cols="48" name="content" maxlength="30000" ></textarea>
+                                    <textarea rows="10" class="form-control" name="text_content" maxlength="50000" ></textarea>
 
                                 </div>
                             </div>
@@ -83,7 +82,28 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Save Image
+                    </div>
+                    <div class="panel-body">
+                        <?= form_open('admin/saveImage', ['id'=>'image_form']); ?>
+                        <div class="form-group">
+                            <input type="text" name="dir" id="dir" placeholder="new directory name">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="image_url" id="image_url"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-sm">Save Image</button>
+                        </div>
+                        <?= form_close(); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

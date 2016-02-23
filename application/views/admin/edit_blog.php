@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="form-label col-md-4">Content:</label>
                                 <div class="col-md-8">
-                                    <textarea rows="10" name="content" class="form-control" maxlength="30000" id="text_editor">
+                                    <textarea rows="10" name="text_content" class="form-control" maxlength="30000" id="text_editor">
                                         <?php if(isset($blog[0]['content'])) echo $blog[0]['content']; else echo ''; ?>
                                     </textarea>
                                 </div>

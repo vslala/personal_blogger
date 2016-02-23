@@ -2,17 +2,40 @@
 <html lang="en">
 
     <head>
-
+        <meta name="google-site-verification" content="cSK9weoz0MQ8vZbMeZt-7fKLMnWDPJ7J2etgdC5Qq68" />
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="google-site-verification" content="RO_vBaO4_FhngXcvq35pEgAVAHsbHtl1FjsmpxXcLQo" />
-        <meta name="description" content="Looking for Interesting stuff, click here to read some interesting and informative blogs and if you
-        furthur need someone to discuss your ideas with, then you are going to love me. Leave a friendly hi :)" />
-          <meta name="msvalidate.01" content="9A742AD490D0DC47C3C133D37576AAE2" />
+        <meta name="msvalidate.01" content="9A742AD490D0DC47C3C133D37576AAE2" />
         <meta property="article:author" content="http://www.facebook.com/varun.shrivastava.3">
         <meta property="article:publisher" content="http://www.varunshrivastava.in">
+        <?php
+            if (isset($blog[0]))
+            {
+                $timestamp = $blog[0]['created_at'];
+                $datetime = new DateTime($timestamp);
+                $date = $datetime->format('Y-m-d');
+                $time = $datetime->format('h:i:s');
+            }
+
+            if (isset($tags[0]))
+            {
+                $keywords = null;
+                foreach ($tags as $t){
+                    $keywords .= str_replace('#', '', $t['tag']).',';
+                }
+                echo '<meta name="keywords" content="'. $keywords .'" />';                   
+            }
+        ?>
         <?php if(isset($blog[0])): ?>
+        <!-- Rich Html Snippet -->
+        <meta itemprop="headline" content="<?= $blog[0]['heading']; ?>"/>
+        <meta itemprop="description" content="<?= substr($blog[0]['summary'], 0, 150).'...'; ?>" />
+        <meta itemprop="image" content="<?php if(isset($blog[0]['cover_image'])){echo html_escape($blog[0]['cover_image']);} ?>" />
+        <meta itemprop="datePublished" content="<?= $date; ?>T<?= $time; ?>" />
+        <!-- // -->
+        <meta name="description" content="<?= substr($blog[0]['summary'], 0, 150).'...'; ?>" />
         <meta property="og:title" content="<?= $blog[0]['heading']; ?>" />
         <meta property="og:site_name" content="Varun Shrivastava" />
         <meta property="og:url" content="<?php if(isset($uri)) echo $uri; else echo 'http://www.varunshrivastava.in'; ?>" />
@@ -21,11 +44,13 @@
         <meta property="og:image" content="<?php if(isset($blog[0]['cover_image'])){echo html_escape($blog[0]['cover_image']);} ?>" />
         <meta property="fb:app_id" content="646422418788927" />
         <meta name="Description" content="<?= $blog[0]['heading']; ?>" />
-        <meta name="twitter:card" content="<?php if(isset($blog[0]['summary'])){echo $blog[0]['summary'];}else{echo substr($blog[0]['content'],0,50).'...';} ?>" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="<?php if(isset($uri)) echo $uri; else echo 'http://www.varunshrivastava.in'; ?>" />
         <meta name="twitter:title" content="<?= $blog[0]['heading']; ?>">
-        <meta name="twitter:description" content="<?php if(isset($blog[0]['summary'])){echo $blog[0]['summary'];}else{echo substr($blog[0]['content'],0,50).'...';} ?>" />
+        <meta name="twitter:description" content="<?php if(isset($blog[0]['summary'])){echo $blog[0]['summary'];}else{echo substr($blog[0]['content'],0,150).'...';} ?>" />
         <meta name="twitter:image" content="<?php if(isset($blog[0]['cover_image'])){echo html_escape($blog[0]['cover_image']);} ?>" />
+        <?php else: ?>
+        <meta name="description" content="Varun Shrivastava is a passionate programmer and a great learner. He always looks for opportunities to interact with new people and make new friends. This is his website where he writes about different stuffs." />
         <?php endif; ?>
         <?php if(isset($products[0]['title'])): ?>
         <meta property="og:title" content="<?= $products[0]['title']; ?>" />
@@ -73,6 +98,8 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
         <?= link_tag("css/style.css")?>
         
+        <!-- Emoji CSS -->
+        <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
         
         <script src="http://cdn.ckeditor.com/4.5.1/full/ckeditor.js"></script>
         <script src="<?= base_url(); ?>js/myjs.js"></script>
@@ -85,6 +112,11 @@
         <![endif]-->
         <link rel="canonical" href="<?php if(isset($uri)){echo $uri;} else {echo 'http://www.varunshrivastava.in'; } ?>">
 		
+
+        <!-- ReactJS Links -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
     </head>
 
     <body>

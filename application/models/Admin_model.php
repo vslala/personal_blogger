@@ -69,6 +69,16 @@ class Admin_model extends CI_Model{
         $query = $this->db->query($sql, [$id]);
         return $query->result_array();
     }
+
+    # Fetches all blogs related to a particular user
+    public function get_user_blogs($userId){
+        $sql = 'SELECT blogs.* FROM blogs 
+                LEFT JOIN map_user_blogs
+                ON blogs.id=map_user_blogs.blog_id
+                WHERE map_user_blogs.user_id = ?';
+        $query = $this->db->query($sql, [$userId]);
+        return $query->result_array();
+    }
     
     public function update_blog($id, $heading, $content, $summary, $coverImage, $category_id, $sort){
         $sql = "UPDATE blogs SET heading=?, content=?, summary=?, cover_image=?, category_id=?, sort=? WHERE id=?";
@@ -102,7 +112,7 @@ class Admin_model extends CI_Model{
             $this->db->insert('tags', $data);
         }
         
-        return true;
+        return $blogId;
     }
 
     public function insert_related_blog($r_blog_id, $blog_id){
@@ -292,5 +302,19 @@ group by categories.id;";
     public function get_customers_response(){
         $query = $this->db->get('customers');
         return $query->result_array();
+    }
+
+    public function map_user_blogs($userId, $blogId){
+        $data = [
+            'user_id' => $userId,
+            'blog_id' => $blogId
+        ];
+
+        $this->db->insert('map_user_blogs', $data);
+
+        if (count($this->db->affected_rows()) == 1)
+            return true;
+        else 
+            return false;
     }
 }

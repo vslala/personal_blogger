@@ -1,0 +1,180 @@
+.menu-group{
+    display: block;
+    float: right;
+}
+.menu-group .menu-item{
+    list-style: none;
+    border: 1px solid lightgrey;
+    display: inline-block;
+    margin-right: 5px;
+}
+.menu-group .menu-item:hover{
+    list-style: none;
+    border: 1px solid lightgrey;
+    display: inline-block;
+    margin-right: 5px;
+    background-color: lightgrey;
+}
+.menu-group li.active{
+    list-style: none;
+    border: 1px solid lightgrey;
+    display: inline-block;
+    margin-right: 5px;
+    background-color: lightgrey;
+}
+
+.menu-group .menu-item a{
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: block;
+    line-height: 100%;
+    padding: 5px;
+}
+
+.compose-form-container{
+    width: 100%;
+    height: 100%;
+}
+.compose-form-container .compose-form-header h3{
+    text-align: left;
+    text-decoration: underline;
+    font-size: large;
+}
+.compose-form-container .compose-form-body{
+
+}
+.form-control{
+    width: 100%;
+    height: 25px;
+}
+.form-control-content{
+    height: 200px;
+}
+.form-control-summary{
+    height: 100px;
+}
+
+
+
+.table{
+    width: 100%;
+}
+.table tr{
+    width: 100%;
+}
+.table tr td{
+    margin-top: 5px;
+    padding: 2px;
+}
+
+
+.hide{
+    display: none;
+    margin-right: 20%;
+    margin-left: 20%;
+    margin-top: 1%;
+    background-color: lightgrey;
+    width: 60%;
+    height: 70%;
+    overflow-y: scroll; 
+    position: absolute;
+}
+.format-hint-div-header{
+    height: 2em;
+}
+.close-div{
+    float: right;
+    position: fixed;
+    margin-bottom: 10px;
+    height: 2em;
+}
+
+
+
+
+.blog-title{
+    font-size: large;
+    font-family: tahoma, sans-serif;
+}
+.badge{
+    border: 1px solid lightblue;
+    color: black;
+    border-radius: 20px;
+    background-color: lightblue;
+}
+.small-text{
+    font-size: smaller;
+    font-family: tahoma, sans-serif;
+}
+
+
+
+
+.list-group{
+    list-style: none;
+    display: block;
+    width: 100%;
+}
+.list-group-item{
+    width: 100%;
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+    border: 1px solid lightgrey;
+}
+.list-group-item a{
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    padding: 5px;
+    display: block;
+}
+.list-group-item a:hover{
+    height: 100%;
+    width: auto;
+    padding: 5px;
+    text-decoration: none;
+    font-weight: bolder;
+    background-color: black;
+    color: white;
+    display: block;
+}
+.list-group-item a.button{
+    color: black;
+    height: 100%;
+    width: auto;
+    border: 1px solid darkgrey;
+    display: block;
+    background-color: lightgrey;
+    font-weight: lighter;
+}
+.list-group-item a.button:hover{
+    color: black;
+    height: 100%;
+    width: auto;
+    border: 1px solid lightblue;
+    display: block;
+    background-color: lightblue;
+    font-weight: lighter;
+}
+
+
+
+.menu-left{
+    float: left;
+    height: 25px;
+    margin-left: 5%;
+    padding: 0px;
+}
+img.logo{
+    height: 50px;
+    margin-top: 1em;
+}
+
+
+
+
+

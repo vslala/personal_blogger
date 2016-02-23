@@ -18,6 +18,13 @@ class Blog_Model extends CI_Model{
         return $query->result_array();
     }
     
+    public function get_most_viewed_blog($blogCount = 3){
+        $this->db->order_by('views', 'DESC');
+        $this->db->limit($blogCount);
+        $query = $this->db->get('blogs');
+        return $query->result_array();
+    }
+
     public function get_about(){
         $query = $this->db->get('about');
         return $query->result_array();

@@ -1,0 +1,48 @@
+<?php
+
+class Author extends CI_Controller{
+
+    public function __construct(){
+        parent::__construct();
+
+        if (! $this->session->userdata('isLogged'))
+            redirect('author/login');
+    }
+
+    public function home(){
+        $data['title'] = 'Home';
+        $data['setHomeActive'] = 'active';
+        $data['blogs'] = $this->admin_model->get_user_blogs($this->session->userdata('authorId'));
+        $this->load->view('layout/_author_header', $data);
+        $this->load->view('layout/_author_top_nav', $data);
+        $this->load->view('author/home', $data);
+    }
+
+    public function compose(){
+        $data['title'] = 'Compose';
+        $data['setComposeActive'] = 'active';
+        $data['categories'] = $this->admin_model->get_categories();
+
+        $this->load->view('layout/_author_header', $data);
+        $this->load->view('layout/_author_top_nav', $data);
+        $this->load->view('author/compose', $data);
+    }
+
+    public function blogEdit($id){
+        $data['title'] = 'Edit Blog';
+        $data['blog'] = $this->admin_model->get_blog($id);
+        $data['blogId'] = $id;
+        $data['heading'] = $data['blog'][0]['heading'];
+        $data['sort'] = $data['blog'][0]['sort'];
+        $data['categories'] = $this->admin_model->get_categories();
+        
+        $this->load->view('layout/_author_header', $data);
+        $this->load->view('layout/_author_top_nav', $data);
+        $this->load->view('author/blog-edit', $data);
+    }
+
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect('author/login');
+    }
+}

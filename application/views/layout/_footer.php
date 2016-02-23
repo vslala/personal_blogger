@@ -72,8 +72,10 @@
     <script src="<?= base_url(); ?>js/clean-blog.min.js"></script>
     
     <!--<script src="<?php // base_url(); ?>js/clean-blog.js"></script>-->
+    <!-- Mail Chimp -->
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us12.list-manage.com","uuid":"a5d2749781d67dd9269ec57d6","lid":"ffd926e444"}) })</script>
 	<!-- Addthis.com -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5602e51aa49bea5b" async="async"></script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5602e51aa49bea5b" async="async"></script>
 </body>
 
 </html>

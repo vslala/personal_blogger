@@ -3,12 +3,8 @@
 class Admin extends CI_Controller{
     public function __construct() {
         parent::__construct();
-    
-        $this->load->helper('form_helper');
-        $this->load->helper('html_helper');
-        $this->load->helper('url_helper');
+
         $this->load->library('session');
-        $this->load->model('admin_model');
     }
     
     private function checkAuth(){
@@ -31,7 +27,8 @@ class Admin extends CI_Controller{
         $this->loggedIn();
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $auth = $this->admin_model->auth($username, $password);
+        if (!(empty($username) || empty($password)))
+            $auth = $this->admin_model->auth($username, $password);
         
         if(isset($auth[0])){
             $this->session->set_userdata(['username'=>$auth[0]['username']]);
@@ -164,10 +161,11 @@ class Admin extends CI_Controller{
     }
     
     public function create(){
+        $this->load->library('markdown');
         $this->checkAuth();
         $author = $this->session->userdata('first_name').' '.$this->session->userdata('last_name');
         $heading = $this->input->post('heading');
-        $content = $this->input->post('content');
+        $content = $this->markdown->defaultTransform($this->input->post('text_content'));
         $summary = $this->input->post('summary');
         $tags = $this->input->post('tags');
         $coverImage = $this->input->post('coverImage');
@@ -212,10 +210,11 @@ class Admin extends CI_Controller{
     
     public function update(){
         $this->checkAuth();
+        $this->load->library('markdown');
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $id = $this->input->post('blogId');
             $heading = $this->input->post('heading');
-            $content = $this->input->post('content');
+            $content = $this->markdown->defaultTransform($this->input->post('text_content'));
             $summary = $this->input->post('summary');
             $coverImage = $this->input->post('coverImage');
             $category_id = $this->input->post('category');
@@ -398,10 +397,64 @@ class Admin extends CI_Controller{
         $this->admin_model->add_product_images($productId, $name, $src, $caption);
         return json_encode($data['productId']);
     }
+
+    public function saveImage(){
+        $imageUrl = $this->input->post('image_url');
+        $dir = $this->input->post('dir');
+        $imagePath = null;
+
+        if (! empty($dir)){
+            if (! file_exists(FCPATH.'img/blogs/'.$dir)){
+                mkdir(FCPATH.'img/blogs/'.$dir);
+                $imagePath = FCPATH.'img/blogs/'.$dir.'/';
+            }
+            $imagePath = FCPATH.'img/blogs/'.$dir.'/';
+        }
+
+
+        $image = NULL;
+        $image_location = $this->check_image($imageUrl, $imagePath);
+
+        if (!empty($image_location)){
+            $file_contents = file_get_contents($imageUrl);
+            file_put_contents($image_location, $file_contents);
+            $image_name = explode('/', $image_location);
+            $image_name = $image_name[count($image_name) - 1];
+            $image = $imagePath.$image_name;
+
+            $data = ['url'=>base_url().'img/blogs/'.$dir.'/'.$image_name];
+            $this->output->set_header('Access-Control-Allow-Origin: *');
+            $this->output->set_output(json_encode($data));
+            return ;
+        } else {
+            $this->session->set_flashdata('warning', 'Image location was not found!');
+        }
+    }
     
     private function create_tags($tags){
         $tagArray = explode(',', $tags);
         return $tagArray;
+    }
+
+    # Checks if the image is in the appropriate type or not
+    private function check_image($image_url, $image_path = 'img/blogs/'){
+        $file_extension = explode('.', $image_url);
+        $file_extension = $file_extension[count($file_extension)-1];
+        $uniq_name = uniqid();
+        $image_location = $image_path.$uniq_name.'.';
+
+        if ($file_extension == 'jpg'){
+            $image_location .= $file_extension; 
+        } else if($file_extension == 'jpeg'){
+            $image_location .= $file_extension;
+        } else if($file_extension == 'png'){
+            $image_location .= $file_extension;
+        } else if ($file_extension == 'gif'){
+            $image_location .= $file_extension;
+        } else{
+            return NULL;
+        }
+        return $image_location;
     }
 }
 		

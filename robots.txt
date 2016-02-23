@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /nbproject/
-
+Disallow: /site/search
 sitemap: http://www.varunshrivastava.in/sitemap.xml

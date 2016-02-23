@@ -23,7 +23,7 @@
                 <div class="">
 
             <!-- <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"> -->
-                <?= $blog[0]['content']; ?>
+                <p itemprop="articleBody"><?= $blog[0]['content']; ?></p>
                 <p>
                     <?php if(! empty($related_blogs)): ?>
                     <hr />
@@ -51,6 +51,35 @@
                     <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
+
+                <!-- Most Viewed Blogs -->
+                <div class="container">
+                    <?php if (isset($mostViewed[0])): ?>
+                    <h3><u>Most Viewed</u></h3>
+                        <?php foreach ($mostViewed as $mv): ?>
+                            <?php 
+                                $slug = null;
+                                if (! empty($mv['slug']))
+                                    $slug = $mv['slug'];
+                                else
+                                    $slug = url_title($mv['heading']);
+
+                                $blogUrl = base_url().'site/blog/'.$mv['id'].'/'.$slug
+                            ?>
+                        <a href="<?= $blogUrl; ?>" class="most-viewed-anchor">
+                        <div class="row">
+                            <div class="col-md-12" style="width: 300px;">
+                                <div class="most-viewed-blogs">
+                                    <img src="<?= $mv['cover_image']; ?>" class="img img-responsive thumbnail" width="300px"/>
+                                    <?= $mv['heading']; ?>
+                                    <hr />
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
             </div>
 
         </div>
@@ -83,8 +112,18 @@
                     <a href="https://twitter.com/vs_shrivastava" class="twitter-follow-button" data-show-count="false">Follow @vs_shrivastava</a>
                     <br />
 					<br />
-                    <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
-                    <script type="IN/Share" data-url="<?= $uri; ?>" data-counter="right"></script>				
+                    <div class="form-group">
+                        <script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+                        <script type="IN/Share" data-url="<?= $uri; ?>" data-counter="right"></script>
+                        <script type="text/javascript">
+                          reddit_url = "<?= $uri; ?>";
+                          reddit_title = "<?= $blog[0]['heading']; ?>";
+                          reddit_bgcolor = "white";
+                          reddit_bordercolor = "00F";
+                        </script>
+                        <script type="text/javascript" src="//www.redditstatic.com/button/button3.js"></script>
+                    </div>
+                    				
 					
                 </div>
             </div>
