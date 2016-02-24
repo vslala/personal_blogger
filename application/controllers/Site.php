@@ -210,6 +210,8 @@ class Site extends CI_Controller{
         }else{
             $data['blog_views'] = $this->blog_model->get_blog_views($id);
         }
+
+        $this->output->cache(30240);
         
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
@@ -292,6 +294,11 @@ class Site extends CI_Controller{
         $data['listItems'] = $this->sap_model->getListItems($listId);
         
         $data['title'] = "Couples List";
+        $data['scripts'] = [
+            'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js'
+        ];
 
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
@@ -303,6 +310,11 @@ class Site extends CI_Controller{
         if (! empty($listId))
             $data['listId'] = $listId;
         $data['listItems'] = $this->sap_model->getListItems($listId);
+        $data['scripts'] = [
+            'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js'
+        ];
 
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);

@@ -62,25 +62,20 @@
         <meta property="fb:app_id" content="646422418788927" />
         <?php endif; ?>
 
-
+        <link rel="shortcut icon" href="<?= base_url(); ?>img/vs_logo.jpg" />
         <title><?php echo $title; ?></title>
+
         <link rel="author" href="https://plus.google.com/+Varunshrivastava007" />
         <link rel="publisher" href="https://plus.google.com/+Varunshrivastava007" />
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
         <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+       <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
 
         <!-- Google Plus Like Button -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         
-        <link rel="shortcut icon" href="<?= base_url(); ?>img/vs_logo.jpg" />
         <!-- Bootstrap Core CSS -->
         <?php echo link_tag('css/bootstrap.min.css'); ?>
         <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
@@ -101,7 +96,10 @@
         <!-- Emoji CSS -->
         <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
         
+        <!-- CKEditor -->
         <script src="http://cdn.ckeditor.com/4.5.1/full/ckeditor.js"></script>
+
+        <!-- Custom Javascript -->
         <script src="<?= base_url(); ?>js/myjs.js"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -114,9 +112,11 @@
 		
 
         <!-- ReactJS Links -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+        <?php if (! empty($scripts)): ?>
+            <?php foreach ($scripts as $s): ?>
+                <script type="text/javascript" src="<?= $s; ?>"></script>
+            <?php endforeach; ?>
+        <?php endif ?>
     </head>
 
     <body>

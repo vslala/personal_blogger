@@ -66,7 +66,8 @@
     <script src="<?= base_url(); ?>js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<?= base_url(); ?>js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="<?= base_url(); ?>js/clean-blog.min.js"></script>
