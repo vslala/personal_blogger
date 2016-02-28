@@ -317,4 +317,26 @@ group by categories.id;";
         else 
             return false;
     }
+
+    ### Offers Related Queries
+
+    public function getOfferDetails($offerId = null){
+        $query = null;
+        if (!empty($offerId)){
+            $query = $this->db->get_where('offers', ['offer_id'=>$offerId]);
+        } else{
+            $query = $this->db->get('offers');
+        }
+
+        return $query->result_array();
+    }
+
+    public function saveData($data){
+        $this->db->insert('offers',$data);
+        $affectedRowsCount = $this->db->affected_rows();
+        if ($affectedRowsCount == 1)
+            return true;
+        else
+            return false;
+    }
 }

@@ -1,3 +1,4 @@
+<?php if (isset($layout[0])): ?>
 <header class="intro-header" style="background-image: url(<?php if(isset($cover_image_url)){echo $cover_image_url;} else{echo $layout[0]['cover_image'];}; ?>)">
         <div class="container">
             <div class="row">
@@ -11,3 +12,4 @@
             </div>
         </div>
     </header>
+<?php endif; ?>

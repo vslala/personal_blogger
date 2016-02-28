@@ -141,7 +141,7 @@
             </div> -->
             <div class="row">
                 <div class="comment_box">
-                    <div id="disqus_thread"></div>
+                    <div id="disqus_thread" class="container-fluid"></div>
                         <script type="text/javascript">
                             /* * * CONFIGURATION VARIABLES * * */
                             var disqus_shortname = 'varunshrivastava';

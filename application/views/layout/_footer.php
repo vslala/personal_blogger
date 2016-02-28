@@ -59,9 +59,16 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>  
 
-            
+    <?php if (! empty($scripts)): ?>
+            <?php foreach ($scripts as $s): ?>
+                <script type="text/javascript" src="<?= $s; ?>"></script>
+            <?php endforeach; ?>
+        <?php endif ?>
+    <!-- Custom Javascript -->
+    <script src="<?= base_url(); ?>js/myjs_user.js"></script> 
+   
     <!-- jQuery -->
     <script src="<?= base_url(); ?>js/jquery.js"></script>
 

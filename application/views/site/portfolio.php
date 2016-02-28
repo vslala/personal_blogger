@@ -1,65 +1,53 @@
 <div class="container">
-    <?php foreach ($projects as $p): ?>
-        <!-- Projects -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="<?= $p['project_image']; ?>" target="_popup">
-                    <img class="img-responsive img-thumbnail" src="<?= $p['project_image']; ?>" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3><?= $p['title']; ?></h3>
-                <div style="font-family: tahoma, sans-serif; font-size: medium;"><?= $p['description']; ?></div>
-                <a class="btn btn-primary" href="<?= $p['link']; ?>">View Project <span class="glyphicon glyphicon-link"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-    <?php endforeach; ?>
-
     <div class="row">
-        <?php 
-        $i=0; $j = (count($projects) - 1); $mid = $j/2;
-        for ($c=0; $c < count($projects); $c++): 
-            if (($i - $j) > 1)
-                break;
-        ?>
-
-        <div class="col-md-6 col-sm-6 col-lg-4">
-            <a href="">
-                <div class="box">
-                    <div class="box-head"><?= $projects[$i]['title']; ?></div>
-                    <div class="box-body">
-                        <div class="box-img">
-                            <img class="img img-responsive" src="<?= $projects[$i]['project_image']; ?>">
-                        </div>
-                    </div>
-                    <div class="box-footer"></div>
-                </div>
-            </a>
+        <div class="switch">
+            <label>List view</label>
+          <input id="cmn-toggle-1" name="switch" class="cmn-toggle cmn-toggle-round" type="checkbox">
+          <label for="cmn-toggle-1" id="cmn-toggle-1"></label>
         </div>
-        <?php
-            $i++;
-        ?>
-        <div class="col-md-6 col-sm-6 col-lg-4">
-            
-            <a href="">
-                <div class="box">
-                    <div class="box-head"><?= $projects[$i]['title']; ?></div>
-                    <div class="box-body">
-                        <div class="box-img">
-                            <img class="img img-responsive" src="<?= $projects[$i]['project_image']; ?>">
-                        </div>
-                    </div>
-                    <div class="box-footer"></div>
-                </div>
-            </a>
-        </div>
-        <?php
-            $j--;
-        ?>
-        <?php endfor; ?>
+        <hr>
     </div>
-        
+    <section class="list">
+        <?php foreach ($projects as $p): ?>
+            <!-- Projects -->
+            <div class="row">
+                <div class="col-md-7">
+                    <a href="<?= $p['project_image']; ?>" target="_popup">
+                        <img class="img-responsive img-thumbnail" src="<?= $p['project_image']; ?>" alt="">
+                    </a>
+                </div>
+                <div class="col-md-5">
+                    <h3><?= $p['title']; ?></h3>
+                    <div style="font-family: tahoma, sans-serif; font-size: medium;"><?= $p['description']; ?></div>
+                    <a class="btn btn-primary" href="<?= $p['link']; ?>">View Project <span class="glyphicon glyphicon-link"></span></a>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <hr>
+        <?php endforeach; ?>
+    </section>
+
+    <section class="blocks">
+        <div class="row">
+            <?php foreach($projects as $p): ?>
+                <div class="col-md-6 col-sm-12">
+                    <a href="<?= $p['link']; ?>" target="_blank" style="text-decoration: none;">
+                        <article class="project">
+                            <div class="article__body">
+                                <img class="img img-responsive thumbnail" src="<?= $p['project_image']; ?>">
+                            </div>
+                            <div class="article__footer">
+                                <span class="article__footer--text">
+                                    <?= $p['title']; ?>
+                                </span>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        </div>  
+    </section>
+    
+
 </div>

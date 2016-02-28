@@ -22,10 +22,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label col-md-4">Content:</label>
-                                <div class="col-md-8">
+                                
+                                <div class="col-md-12">
                                   
-                                    <textarea rows="10" class="form-control" name="text_content" maxlength="50000" ></textarea>
+                                    <textarea style="height: 300px;" class="form-control" name="text_content" maxlength="50000" 
+                                    placeholder="Start writing your blog here..." ></textarea>
 
                                 </div>
                             </div>
@@ -33,7 +34,7 @@
                                 <label class="form-label col-md-4">Summary:</label>
                                 <div class="col-md-8">
                                   
-                                    <textarea id="text_editor" class="form-control" rows="3" cols="48" name="summary" maxlength="500"></textarea>
+                                    <textarea id="text_editor" class="form-control" style="height: 100px;" cols="48" name="summary" maxlength="500"></textarea>
 
                                 </div>
                             </div>              

@@ -307,7 +307,10 @@ $(document).ready(function(){
             })
         })
         
-        
+        $('#cmn-toggle-1').click(function(){
+            $('.list').toggle('slow');
+            $('.blocks').toggle('slow');
+        })
         
 CKEDITOR.replace('content');
 
@@ -349,6 +352,7 @@ function getRelatedBlog(e){
             console.log(xhr.responseText);
         }
    });
+
 }
 
 function deleteRelatedBlog(){

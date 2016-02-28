@@ -210,8 +210,6 @@ class Site extends CI_Controller{
         }else{
             $data['blog_views'] = $this->blog_model->get_blog_views($id);
         }
-
-        $this->output->cache(30240);
         
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
@@ -275,6 +273,8 @@ class Site extends CI_Controller{
         $data['cover_subheading'] = 'These are my project works uptil now! Hope you find it appreciable! :D';
         $data['projects'] = $this->blog_model->get_projects();
         $data['layout'] = $this->blog_model->get_layout('portfolio');
+        $data['css'] = [base_url().'css/build/toggle/css/style.css', 'https://fonts.googleapis.com/css?family=Righteous'];
+        $data['scripts'] = ['js/build/toggle/js/toggle.min.js'];
         if(count($data['layout']) <= 0)
             $data['layout'] = NULL;
         
@@ -330,6 +330,24 @@ class Site extends CI_Controller{
         $this->load->view('layout/_author_header', $data);
         $this->load->view('author/login', $data);
         // $this->load->view('layout/_footer');
+    }
+
+    ### OFFER GET FUNCTION ###
+    public function offers($offerId = null){
+        $data['title'] = 'Offers';
+
+        if (! empty($offerId)){
+            $data['offer'] = $this->admin_model->getOfferDetails($offerId);
+        } else{
+            $data['offers'] = $this->admin_model->getOfferDetails();
+        }
+        $data['layout'] = $this->blog_model->get_layout('offer');
+
+        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_top_nav', $data);
+        $this->load->view('layout/_cover_layout');
+        $this->load->view('site/offers', $data);
+        $this->load->view('layout/_footer');
     }
 
     

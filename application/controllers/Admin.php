@@ -430,6 +430,51 @@ class Admin extends CI_Controller{
             $this->session->set_flashdata('warning', 'Image location was not found!');
         }
     }
+
+    ### OFFER CRUD BELOW ###
+
+    public function showOffers(){
+        $data['title'] = "Offers";
+    }
+
+    public function offerCreateForm(){
+        $data['title'] = "Create-offer";
+
+        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_top_nav', $data);
+        $this->load->view('admin/create-offer', $data);
+        $this->load->view('layout/_footer');
+
+    }
+
+    public function createOffer(){
+        $offerData = $this->input->post();
+        $datetime = $this->getDateTime();
+        $newArray = [
+            'created_at' => $datetime['date'].' '.$datetime['time'],
+            'offer_id' => substr(uniqid(), 0, 7)
+        ];
+        $offerData = array_merge($offerData, $newArray);
+        $flag = $this->admin_model->saveData($offerData);
+        if ($flag){
+            redirect('showOffers');
+        }
+
+        show_404();
+    }
+
+    /**
+    * @return array
+    */
+    function getDateTime(){
+        $date = date('Y-m-d');
+        $time = date('h:i:s');
+        $datetime = [
+            'date' => $date,
+            'time' => $time
+        ];
+        return $datetime;
+    }
     
     private function create_tags($tags){
         $tagArray = explode(',', $tags);

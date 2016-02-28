@@ -61,6 +61,12 @@
         <meta property="og:image" content="http://s6.postimg.org/4sos4yw8x/banner_web_design.jpg" />
         <meta property="fb:app_id" content="646422418788927" />
         <?php endif; ?>
+        <?php if(isset($metaTags[0])){
+            foreach ($metaTags as $key => $tag) {
+                echo $tag;
+            }
+        } ?>
+        
 
         <link rel="shortcut icon" href="<?= base_url(); ?>img/vs_logo.jpg" />
         <title><?php echo $title; ?></title>
@@ -99,9 +105,6 @@
         <!-- CKEditor -->
         <script src="http://cdn.ckeditor.com/4.5.1/full/ckeditor.js"></script>
 
-        <!-- Custom Javascript -->
-        <script src="<?= base_url(); ?>js/myjs.js"></script>
-
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -111,12 +114,11 @@
         <link rel="canonical" href="<?php if(isset($uri)){echo $uri;} else {echo 'http://www.varunshrivastava.in'; } ?>">
 		
 
-        <!-- ReactJS Links -->
-        <?php if (! empty($scripts)): ?>
-            <?php foreach ($scripts as $s): ?>
-                <script type="text/javascript" src="<?= $s; ?>"></script>
+        <?php if (! empty($css)): ?>
+            <?php foreach ($css as $link): ?>
+                <link rel="stylesheet" type="text/css" href="<?= $link; ?>">
             <?php endforeach; ?>
-        <?php endif ?>
+        <?php endif; ?>
     </head>
 
     <body>
