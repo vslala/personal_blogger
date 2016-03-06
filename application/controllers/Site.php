@@ -8,6 +8,23 @@ class Site extends CI_Controller{
         $this->load->helper('url');
     }
 
+    public function cryptMD5($term){
+        var_dump(md5($term));die();
+    }
+
+    public function searchResults(){
+        $data['title'] = "Search Results";
+        $data['cover_subheading'] = 'Ooops... There was no matching blog with your search terms!';
+        $data['cover_heading'] = 'No Match Found!';
+        $count = 0;
+
+        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_top_nav', $data);
+        $this->load->view('site/google-search',  $data);
+        $this->load->view('layout/_footer', $data);
+
+    }
+
     public function google7d2ff02ca99d8ba7(){
         $this->load->view('site/google7d2ff02ca99d8ba7.html');
     }
@@ -184,6 +201,7 @@ class Site extends CI_Controller{
         $data['title'] = $heading;
         $data['blog'] = $this->blog_model->get_blog($id);
         $data['mostViewed'] = $this->blog_model->get_most_viewed_blog(5);
+        $data['recentPosts'] = $this->blog_model->get_recent_blogs(5);
         if(isset($data['blog']['0']['posted_on']))
             $date_posted = $data['blog']['0']['posted_on'];
         else
@@ -193,15 +211,15 @@ class Site extends CI_Controller{
         $data['uri'] = current_url();
         $data['tags'] = $this->blog_model->get_blog_tags($data['blog'][0]['id']);
 
-        $related_blogs = $this->blog_model->get_related_blog_id($id);
-        $blogs = array();
+        // $related_blogs = $this->blog_model->get_related_blog_id($id);
+        // $blogs = array();
 
-        foreach ($related_blogs as $row) {
+        // foreach ($related_blogs as $row) {
 
-            array_push($blogs, $this->blog_model->get_blog($row['related_blog_id']));
-        }
+        //     array_push($blogs, $this->blog_model->get_blog($row['related_blog_id']));
+        // }
 
-        $data['related_blogs'] = $blogs;        
+        // $data['related_blogs'] = $blogs;        
 
         $cookie_val = get_cookie('blog'.$id);
         if($cookie_val == '' || $cookie_val == null){
@@ -210,6 +228,8 @@ class Site extends CI_Controller{
         }else{
             $data['blog_views'] = $this->blog_model->get_blog_views($id);
         }
+
+        $data['css'] = ['https://cdn-images.mailchimp.com/embedcode/slim-10_7.css'];
         
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);

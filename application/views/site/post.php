@@ -2,8 +2,20 @@
 <article>
     <div class="container">
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-sm-12 col-md-8 col-lg-8">
+            <div class="col-md-1"></div>
+            <div class="col-md-8 col-sm-10 col-lg-8">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- MyAdsenseAd -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-3963876904167425"
+                         data-ad-slot="6497229790"
+                         data-ad-format="auto"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <!-- <div class="col-sm-12 col-md-8 col-lg-8">
                 <div class="fb-like" 
                          data-href="<?= $uri; ?>" 
                          data-layout="standard" 
@@ -14,11 +26,28 @@
                     </div>
                     <g:plusone></g:plusone>
                     <a href="https://twitter.com/share" class="twitter-share-button" data-related="vs_shrivastava" data-hashtags="vsproductions">Tweet</a>
+            </div> -->
+            <div class="col-md-3">
+    <form role="form" class="form-inline" action="http://varunshrivastava/site/searchResults" id="cse-search-box">
+      <div class="">
+        <input type="hidden" name="cx" value="partner-pub-3963876904167425:8690882599" />
+        <input type="hidden" name="cof" value="FORID:10" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input type="text" style="width: 100%;" class="form-control" name="q" placeholder="Search anything..." />
+      </div>
+      <div class="form-group hidden">
+        <button type="submit" class="btn btn-green" name="sa">search</button>
+      </div>
+    </form>
+    <hr />
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</script>
+    <script type="text/javascript" src="http://www.google.com/cse/t13n?form=cse-search-box&t13n_langs=en"></script>
+
             </div>
-            <div class="col-md-2"></div>
         </div>
         <div class="row">
-            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
             <div class="col-md-8 col-sm-10 col-lg-8">
                 <div class="">
 
@@ -41,21 +70,62 @@
                 </div>
             </div>
             <div class="col-md-2 col-lg-2 col-sm-2">
-                
-                <!-- Most Viewed Blogs -->
-                <!-- <div class="container"> -->
-                    <?php if (isset($mostViewed[0])): ?>
-                    <center><h3><u><i>Most Viewed</i></u></h3></center>
-                        <?php foreach ($mostViewed as $mv): ?>
-                            <?php 
-                                $slug = null;
-                                if (! empty($mv['slug']))
-                                    $slug = $mv['slug'];
-                                else
-                                    $slug = url_title($mv['heading']);
 
-                                $blogUrl = base_url().'site/blog/'.$mv['id'].'/'.$slug
-                            ?>
+                    <?php if(isset($recentPosts[0])): ?>
+
+                    <section class="box">
+                            <span class="heading">
+                                Recent Posts
+                            </span>
+
+                        <?php 
+
+                        foreach ($recentPosts as $rp): 
+                        $slug = null;
+                        if (! empty($rp['slug']))
+                            $slug = $rp['slug'];
+                        else
+                            $slug = url_title($rp['heading']);
+
+                        $blogUrl = base_url().'site/blog/'.$rp['id'].'/'.$slug;
+                        ?>
+                        <a href="<?= $blogUrl; ?>" class="most-viewed-anchor">
+                        <div class="row" style="border-left: 1px solid lightgrey;">
+                            <div class="col-md-12" style="width: 300px;">
+                                <div class="most-viewed-blogs">
+                                    <img src="<?= $rp['cover_image']; ?>" class="img img-responsive thumbnail" width="300px"/>
+                                    <?= $rp['heading']; ?>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+
+
+                        <?php endforeach; ?>
+                    </section>
+
+                    <?php endif; ?>
+                
+
+            <!-- Most Viewed Blogs -->
+            <!-- <div class="container"> -->
+                <?php if (isset($mostViewed[0])): ?>
+                <section class="box">
+
+                <span class="heading">Most Viewed</span>
+
+                    <?php foreach ($mostViewed as $mv): ?>
+                        <?php 
+                            $slug = null;
+                            if (! empty($mv['slug']))
+                                $slug = $mv['slug'];
+                            else
+                                $slug = url_title($mv['heading']);
+
+                            $blogUrl = base_url().'site/blog/'.$mv['id'].'/'.$slug;
+                        ?>
+            
                         <a href="<?= $blogUrl; ?>" class="most-viewed-anchor">
                         <div class="row" style="border-left: 1px solid lightgrey;">
                             <div class="col-md-12" style="width: 300px;">
@@ -68,19 +138,13 @@
                         </div>
                         </a>
                         <?php endforeach; ?>
+
+                    </section> <!-- ./box -->
+
                     <?php endif; ?>
                 <!-- </div> -->
 
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- MyAdsenseAd -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-3963876904167425"
-                         data-ad-slot="6497229790"
-                         data-ad-format="auto"></ins>
-                    <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+                
             </div>
 
         </div>

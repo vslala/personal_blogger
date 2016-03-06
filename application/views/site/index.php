@@ -2,9 +2,21 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <?= form_open('site/search'); ?>
-            <input type="text" placeholder="Type the keywords and hit enter..." name="search" class="form-control small" required=""/>
-            <?= form_close(); ?>
+            <form role="form" class="form-inline" action="http://www.varunshrivastava.in/site/searchResults" id="cse-search-box">
+      <div class="">
+        <input type="hidden" name="cx" value="partner-pub-3963876904167425:8690882599" />
+        <input type="hidden" name="cof" value="FORID:10" />
+        <input type="hidden" name="ie" value="UTF-8" />
+        <input type="text" style="width: 100%;" class="form-control" name="q" placeholder="Type anything and hit enter..." />
+      </div>
+      <div class="form-group hidden">
+        <button type="submit" class="btn btn-green" name="sa">search</button>
+      </div>
+    </form>
+    <hr />
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</script>
+    <script type="text/javascript" src="http://www.google.com/cse/t13n?form=cse-search-box&t13n_langs=en"></script>
             <?php if (isset($blogs)): ?>
                 <?php foreach ($blogs as $b): ?>
                     <div class="post-preview">

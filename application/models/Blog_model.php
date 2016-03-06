@@ -26,6 +26,14 @@ class Blog_Model extends CI_Model{
         return $query->result_array();
     }
 
+    public function get_recent_blogs($blogCount = 5){
+        $this->db->select('id, heading, cover_image, slug, views');
+        $this->db->order_by('posted_on', 'desc');
+        $this->db->limit($blogCount);
+        $query = $this->db->get('blogs');
+        return $query->result_array();
+    }
+
     public function get_about(){
         $query = $this->db->get('about');
         return $query->result_array();

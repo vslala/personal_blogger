@@ -2,12 +2,12 @@
 <html lang="en">
 
     <head>
-        <meta name="google-site-verification" content="cSK9weoz0MQ8vZbMeZt-7fKLMnWDPJ7J2etgdC5Qq68" />
+        <!-- <meta name="google-site-verification" content="cSK9weoz0MQ8vZbMeZt-7fKLMnWDPJ7J2etgdC5Qq68" /> -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="google-site-verification" content="RO_vBaO4_FhngXcvq35pEgAVAHsbHtl1FjsmpxXcLQo" />
-        <meta name="msvalidate.01" content="9A742AD490D0DC47C3C133D37576AAE2" />
+        <!-- <meta name="google-site-verification" content="RO_vBaO4_FhngXcvq35pEgAVAHsbHtl1FjsmpxXcLQo" /> -->
+        <!-- <meta name="msvalidate.01" content="9A742AD490D0DC47C3C133D37576AAE2" /> -->
         <meta property="article:author" content="http://www.facebook.com/varun.shrivastava.3">
         <meta property="article:publisher" content="http://www.varunshrivastava.in">
         <?php
@@ -89,7 +89,7 @@
         <!-- Custom CSS -->
         <?= link_tag('css/clean-blog.min.css'); ?>
         <?= link_tag('css/style.css'); ?>
-        <?= link_tag('css/style_1.css'); ?>
+        <?= link_tag('css/main.css'); ?>
         <!--<link href="css/clean-blog.min.css" rel="stylesheet" >-->
         <!--<link href="css/style.css" rel="stylesheet" />-->
 
@@ -119,6 +119,10 @@
                 <link rel="stylesheet" type="text/css" href="<?= $link; ?>">
             <?php endforeach; ?>
         <?php endif; ?>
+
+        <style type="text/css">
+        #mc_embed_signup{background:#fff; font:14px Helvetica,Arial,sans-serif; width: 100%;}
+        </style>
     </head>
 
     <body>
