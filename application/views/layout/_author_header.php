@@ -12,12 +12,13 @@
         <link rel="shortcut icon" href="<?= base_url(); ?>img/vs_logo.jpg" />
         <title><?php echo $title; ?></title>
 
-        <!--[if lte IE 8]>
-          <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.6.0/base-min.css&pure/0.6.0/grids-min.css&pure/0.6.0/grids-responsive-old-ie-min.css">
-        <![endif]-->
-        <!--[if gt IE 8]><!-->
-          <link rel="stylesheet" href="http://yui.yahooapis.com/combo?pure/0.6.0/base-min.css&pure/0.6.0/grids-min.css&pure/0.6.0/grids-responsive-min.css">
-        <!--<![endif]-->
+        <link rel="stylesheet" href="<?= base_url(); ?>css/build/materialize.css">
+
+        <?php if (isset($stylesheets[0])): ?>
+            <?php foreach($stylesheets as $css): ?>
+            <link rel="stylesheet" type="text/css" href="<?= $css; ?>">
+            <?php endforeach; ?>
+        <?php endif; ?>
 
         <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>css/build/author/style.css">
     </head>

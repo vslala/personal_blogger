@@ -1,93 +1,90 @@
-<div class="container">
-    <div class="row first-row"></div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-        
-        <?php if (isset($offer[0])): ?>
-        <section>
-            <header>
-                <h2><?= $offer[0]['heading']; ?></h2>
-                <span class="helper">#<?= $offer[0]['offer_id']; ?></span><br/>
-                <span class="helper">Offer End-date: <?= $offer[0]['end_date']; ?></span>
-            </header>
-            <article>
-                <?= $offer[0]['content']; ?>
-            </article>
-        </section>
-        <div class="contact-form">
-                <p>You cannot say no to this offer... Contact me ASAP!</p>
-                <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-                <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-                <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-                <?= form_open('site/save_contact', ['id'=>'contact_form']); ?>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Name" id="name" required data-validation-required-message="Please enter your name.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Email Address</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email Address" id="email" required data-validation-required-message="Please enter your email address.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Phone Number</label>
-                            <input type="tel" class="form-control" name="phone" placeholder="Phone Number" id="phone" required data-validation-required-message="Please enter your phone number.">
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="row control-group">
-                        <div class="form-group col-xs-12 floating-label-form-group controls">
-                            <label>Message</label>
-                            <textarea rows="5" class="form-control" name="message" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
-                            <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div id="success"></div>
-                    <div class="row">
-                        <div class="form-group col-xs-12">
-                            <button type="submit" class="btn btn-default">Send</button>
-                        </div>
-                    </div>
-                <?= form_close(); ?>
+<section class="custom-modal">
+    <div class="custom-modal__header">
+        <div class="large-text bolder custom-modal--heading">
+            Please answer few simple questions...
         </div>
-
-        <?php elseif (isset($offers[0])): ?>
-
-        <div class="display-offers-list">
-            <ul class="list-group">
-            <?php foreach ($offers as $offer): ?>
-
-            <a href="<?= base_url(); ?>offer/<?= $offer['offer_id']; ?>">
-            <li class="list-group-item">
-                <div class="list-title">
-                    <?= $offer['heading'];?>
-                </div>
-                <div class="list-side-content">
-                    <span class="help-block small">#<?= $offer['offer_id']; ?></span>
-                    <span class="help-block small">End Date: <?= $offer['end_date']; ?></span>
-                </div>
-            </li>
-            </a>
-
-            <?php endforeach; ?>
-            </ul>
+        <div class="custom-model__close" id="close_custom_modal">&times;</div>
+    </div>
+    <hr>
+    <div class="custom-modal__body">
+        <p>Will this be your personal website?</p>
+        <p><button id="yes_1">YES</button><button id="no_1">NO</button></p>
         </div>
+        <br />
+</section>
 
-        <?php else: ?>
 
-        <h2>There are no offers available at the moment. Please visit later... </h2>  
 
-        <?php endif; ?>
-        
-        </div>
-        <div class="col-md-2"></div>
-    </div>  
+
+
+
+
+<section class="offer-container">
+    <div class="offer-container--background">
+        <img src="<?= base_url(); ?>img/offer-background-1.jpg" class="offer-container__bg">
+    </div>
+    <div class="offer-container__center">
+        <p style="font-family: tahoma, sans-serif;">
+            <?php 
+                if (isset($layout[0]['cover_heading']))
+                    echo $layout[0]['cover_heading'];
+                else
+                    echo 'Who said it had to be hard to find a good designer or developer?';
+            ?>
+        </p>
+        <p style="font-family: calibri, sans-serif;">
+            VS is an invite-only community where you meet top freelance designers, developers, or studios to build your next project.
+        </p>
+        <p id="btn_p">
+            <button class="offer-container__btn btn btn-primary" id="btn_estimate">Get an Estimate</button>
+        </p>
+        <p style="color: grey;">
+            Feel free to check an Estimated price
+        </p>
+    </div>
+</section>
+
+<section class="offer-body">
+    <div class="container offer-body--container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <!-- Begin MailChimp Signup Form -->
+
+<div id="mc_embed_signup">
+<form action="//varunshrivastava.us12.list-manage.com/subscribe/post?u=a5d2749781d67dd9269ec57d6&amp;id=0d08391777" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <h2>Subscribe to our mailing list</h2>
+<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+<div class="mc-field-group">
+    <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+</label>
+    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
 </div>
+<div class="mc-field-group">
+    <label for="mce-FNAME">First Name </label>
+    <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+</div>
+<div class="mc-field-group">
+    <label for="mce-LNAME">Last Name </label>
+    <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+</div>
+<div class="mc-field-group">
+    <label for="mce-MMERGE3">Write a friendly note to me </label>
+    <textarea name="MMERGE3" class="form-control" id="mce-MMERGE3"></textarea>
+</div>
+       <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a5d2749781d67dd9269ec57d6_0d08391777" tabindex="-1" value=""></div>
+    <input type="submit" value="Send" name="subscribe" id="mc-embedded-subscribe" class="button">
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='MMERGE3';ftypes[3]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
+            </div>
+        </div>
+    </div>
+</section>
+
 <hr />
+
+

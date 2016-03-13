@@ -10,6 +10,8 @@ $(document).ready(function () {
     })
 
     $('#posted_on').val(getCurrentDate());
+
+    CKEDITOR.replace('blog_content');
 })
 
 function getCurrentDate(){

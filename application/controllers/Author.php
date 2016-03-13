@@ -9,6 +9,10 @@ class Author extends CI_Controller{
             redirect('author/login');
     }
 
+    public function index(){
+        redirect('author/home');
+    }
+
     public function home(){
         $data['title'] = 'Home';
         $data['setHomeActive'] = 'active';
@@ -23,9 +27,12 @@ class Author extends CI_Controller{
         $data['setComposeActive'] = 'active';
         $data['categories'] = $this->admin_model->get_categories();
 
+        $data['scripts'] = ['http://cdn.ckeditor.com/4.5.1/full/ckeditor.js'];
+
         $this->load->view('layout/_author_header', $data);
         $this->load->view('layout/_author_top_nav', $data);
         $this->load->view('author/compose', $data);
+        $this->load->view('layout/_author_footer', $data);
     }
 
     public function blogEdit($id){
@@ -35,10 +42,13 @@ class Author extends CI_Controller{
         $data['heading'] = $data['blog'][0]['heading'];
         $data['sort'] = $data['blog'][0]['sort'];
         $data['categories'] = $this->admin_model->get_categories();
+
+        $data['scripts'] = ['http://cdn.ckeditor.com/4.5.1/full/ckeditor.js'];
         
         $this->load->view('layout/_author_header', $data);
         $this->load->view('layout/_author_top_nav', $data);
         $this->load->view('author/blog-edit', $data);
+        $this->load->view('layout/_author_footer', $data);
     }
 
     public function logout(){

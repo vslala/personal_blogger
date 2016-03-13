@@ -40,7 +40,7 @@ class Admin extends CI_Controller{
         
         $data['title'] = 'Login';
  
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('admin/login', $data);
         $this->load->view('layout/_footer');
     }
@@ -61,7 +61,7 @@ class Admin extends CI_Controller{
         $data['setHomeActive'] = 'active';
         $data['blogs'] = $this->admin_model->get_blogs();
         
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/home', $data);
         $this->load->view('layout/_footer', $data);
@@ -73,7 +73,7 @@ class Admin extends CI_Controller{
         $data['setProjectActive'] = 'active';
         $data['projects'] = $this->admin_model->get_projects();
         
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/project', $data);
         $this->load->view('layout/_footer');
@@ -85,7 +85,7 @@ class Admin extends CI_Controller{
         $data['setProjectActive'] = 'active';
         $data['project'] = $this->admin_model->get_project($id);
         
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/edit_project', $data);
         $this->load->view('layout/_footer');
@@ -129,7 +129,7 @@ class Admin extends CI_Controller{
         $data['setAboutActive'] = 'active';
         $data['about'] = $this->admin_model->get_about();
         
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/about', $data);
         $this->load->view('layout/_footer');
@@ -154,7 +154,7 @@ class Admin extends CI_Controller{
         $data['setComposeActive'] = 'active';
         $data['categories'] = $this->admin_model->get_categories();
         
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/compose', $data);
         $this->load->view('layout/_footer');
@@ -202,7 +202,7 @@ class Admin extends CI_Controller{
 
         $data['related_blogs'] = $related_blogs;
         
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/edit_blog', $data);
         $this->load->view('layout/_footer');
@@ -251,7 +251,7 @@ class Admin extends CI_Controller{
         $data['setLayoutActive'] = 'active';
         $data['layouts'] = $this->admin_model->get_layouts();
         
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/layout', $data);
         $this->load->view('layout/_footer');
@@ -290,7 +290,7 @@ class Admin extends CI_Controller{
         $data['read_contacts'] = $this->admin_model->get_contacts(false);
         $data['customerResponse'] = $this->admin_model->get_customers_response();
         
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/contact', $data);
         $this->load->view('layout/_footer');
@@ -301,7 +301,7 @@ class Admin extends CI_Controller{
         $data['setCategoryActive'] = 'active';
         $data['categories'] = $this->admin_model->get_categories();
         
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/category', $data);
         $this->load->view('layout/_footer');
@@ -330,7 +330,7 @@ class Admin extends CI_Controller{
         $data['setProductActive'] = 'active';
         $data['products'] = $this->admin_model->get_products();
 
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/product', $data);
         $this->load->view('layout/_footer');
@@ -339,7 +339,7 @@ class Admin extends CI_Controller{
     public function product_add(){
         $data['title'] = 'Add Product';
 
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/product_add', $data);
         $this->load->view('layout/_footer');
@@ -362,7 +362,7 @@ class Admin extends CI_Controller{
         $data['title'] = 'Product Edit';
         $data['product'] = $this->admin_model->get_product_by_id($id);
 
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/product_edit', $data);
         $this->load->view('layout/_footer');
@@ -440,7 +440,7 @@ class Admin extends CI_Controller{
     public function offerCreateForm(){
         $data['title'] = "Create-offer";
 
-        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_admin_header', $data);
         $this->load->view('layout/_admin_top_nav', $data);
         $this->load->view('admin/create-offer', $data);
         $this->load->view('layout/_footer');
@@ -502,4 +502,4 @@ class Admin extends CI_Controller{
         return $image_location;
     }
 }
-		
+        

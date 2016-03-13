@@ -1,30 +1,29 @@
 
-<div class="pure-g">
-    <div class="pure-u-sm-1-3"></div>
-    <div class="pure-u-sm-1-3">
-        <div class="login-container">
-            <div class="login-header">
-                <h3>Author's Login</h3>
-            </div>
-            <div class="login-body">
-                <?= form_open('process/authenticate'); ?>
-                <table class="table">
-                    <tr>
-                        <td>Username:</td>
-                        <td><input type="text" name="username" id="username" validate/> </td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td><input type="password" name="password" id="password" validate> </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td> <button type="submit" class="button" id="login_btn">Login</button> </td>
-                    </tr>
-                </table>
-                <?= form_close(); ?>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col m2"></div>
+        <div class="col m10">
+                <h4><u>Author's Login<u></h4>
+                    <?= form_open('process/authenticate'); ?>
+                    <div class="row">
+                        <div class="col m2"><label>Username</label></div>
+                        <div class="col m10">
+                            <input type="text" name="username" id="username" validate/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2"><label>Password</label></div>
+                        <div class="col m10">
+                            <input type="password" name="password" id="password" validate>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2"><label></label></div>
+                        <div class="col m10">
+                            <button type="submit" class="button primary" id="login_btn">Login</button>
+                        </div>
+                    </div>
+                    <?= form_close(); ?>
         </div>
     </div>
-    <div class="pure-u-sm-1-3"></div>
 </div>

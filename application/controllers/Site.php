@@ -84,6 +84,8 @@ class Site extends CI_Controller{
         $data['i'] = 0;
         $data['about'] = $this->blog_model->get_about();
         $data['projects'] = $this->blog_model->get_projects();
+
+        $this->output->cache(70560);
         
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
@@ -159,6 +161,8 @@ class Site extends CI_Controller{
         $data['setContactActive'] = 'active';
         $data['layout'] = $this->blog_model->get_layout('contact');
         $data['about'] = $this->blog_model->get_layout('contact');
+
+        $this->output->cache(70560);
         
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
@@ -297,6 +301,8 @@ class Site extends CI_Controller{
         $data['scripts'] = ['js/build/toggle/js/toggle.min.js'];
         if(count($data['layout']) <= 0)
             $data['layout'] = NULL;
+
+        $this->output->cache(70560);
         
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
@@ -362,12 +368,12 @@ class Site extends CI_Controller{
             $data['offers'] = $this->admin_model->getOfferDetails();
         }
         $data['layout'] = $this->blog_model->get_layout('offer');
-
+        $data['css'] = ['https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', '//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css'];
+ 
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
-        $this->load->view('layout/_cover_layout');
         $this->load->view('site/offers', $data);
-        $this->load->view('layout/_footer');
+        $this->load->view('layout/_footer', $data);
     }
 
     

@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+}
+h4{
+    font-family: Roboto, sans-serif;
+    font-weight: bolder;
+}
+nav{
+    background-color: #ff6699;
+}
+.hide{
+    display: none;
+    margin-right: 20%;
+    margin-left: 20%;
+    margin-top: 1%;
+    background-color: lightgrey;
+    width: 60%;
+    height: 70%;
+    overflow-y: scroll; 
+    position: absolute;
+}
+.format-hint-div-header{
+    height: 2em;
+}
+.close-div{
+    float: right;
+    position: fixed;
+    margin-bottom: 10px;
+    height: 2em;
+}
+
+.logo{
+    height: 50px;
+    line-height: 50px;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+.clear-fix{
+    height: 30px;
+    width: 100%;
+}
+// Inputs Style
+input, textarea, select{
+    width: 100%;
+    font-family: Roboto, sans-serif;
+    font-weight: 200px;
+}
+label{
+    font-family: calibri, sans-serif;
+    font-size: larger;
+    font-weight: bolder;
+}
+.button{
+    background-color: transparent;
+    padding: 10px;
+    border: 2px solid #000000;
+    color: #000000;
+    font-weight: bold;
+    &:hover{
+        background-color: #ff6699;
+        color: #ffffff;
+        border: 2px solid #ff6699;
+    }
+}

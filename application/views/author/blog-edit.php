@@ -32,10 +32,10 @@
                             <td>Blog Content</td>
                             <td><textarea name="blog_content" class="form-control form-control-content" id="content" maxlength="50000" length="50000" placeholder="Start writing your blog..." validate><?= $content; ?></textarea></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td></td>
                             <td><a href="#" id="format_hint">formatting help</a> </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <?php 
                                 if (isset($blog[0]['summary'])){
@@ -79,5 +79,3 @@
     <div class="pure-u-1-5"></div>
 </div>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script type="text/javascript" src="<?= base_url(); ?>js/build/author/user_script.js"></script>

@@ -310,12 +310,21 @@ $(document).ready(function(){
         $('#cmn-toggle-1').click(function(){
             $('.list').toggle('slow');
             $('.blocks').toggle('slow');
-        })
+        });
+
+        /* OFFER PAGE PRICE ESTIMATION */
+        $('#btn_estimate').click(function (){
+            $('.custom-modal').show(200);
+        });
+        $('#close_custom_modal').click(function (){
+            $('.custom-modal').hide(200);
+        });
         
-CKEDITOR.replace('content');
+    CKEDITOR.replace('content');
 
 
-deleteRelatedBlog();
+    deleteRelatedBlog();
+
 });
 
 function previewText(){
