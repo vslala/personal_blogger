@@ -10,8 +10,10 @@
 
 <div class="container">
     <div class="row">
+        <?= form_open('process/create'); ?>
         <div class="cl m8">
             <div class="row">
+
                 <h4>Compose Your Blog</h4>
                 <hr>
                 <div class="clear-fix"></div>
@@ -84,6 +86,8 @@
     </div>
         </div>
         <div class="cl m4"></div>
+
+        <?= form_close(); ?>
     </div>
     
 </div>

@@ -59,4 +59,8 @@ label {
     color: #ffffff;
     border: 2px solid #ff6699; }
 
+.badge-circle {
+  font-weight: bolder;
+  font-size: large; }
+
 /*# sourceMappingURL=style.css.map */

@@ -45,15 +45,15 @@ class Admin extends CI_Controller{
         $this->load->view('layout/_footer');
     }
 
-    public function createUser($username, $password, $firstName, $lastName, $isAdmin){
-        $flag = $this->admin_model->create_user($username, $password, $firstName, $lastName, $isAdmin);
+    // public function createUser($username, $password, $firstName, $lastName, $isAdmin){
+    //     $flag = $this->admin_model->create_user($username, $password, $firstName, $lastName, $isAdmin);
 
-        if ($flag){
-            echo 'Successfully';
-        }else{
-            echo "Kaam Dal Gayo!";
-        }
-    }
+    //     if ($flag){
+    //         echo 'Successfully';
+    //     }else{
+    //         echo "Kaam Dal Gayo!";
+    //     }
+    // }
     
     public function home(){
         $this->checkAuth();
@@ -173,10 +173,11 @@ class Admin extends CI_Controller{
         $sort = $this->input->post('sort');
         $slug = url_title($heading);
         $posted_on = $this->input->post('posted_on');
+        $created_at = date('Y-m-d').' '.date('h:i:s');
 
         $tagArray = $this->create_tags($tags);
         
-        $this->admin_model->create_blog($author, $heading, $content, $summary, $coverImage, $category_id, $sort, $slug, $posted_on, $tagArray);
+        $this->admin_model->create_blog($author, $heading, $content, $summary, $coverImage, $category_id, $sort, $slug, $posted_on, $created_at, $tagArray);
         
         redirect('admin/home');
     }

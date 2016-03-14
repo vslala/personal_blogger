@@ -86,7 +86,7 @@ class Admin_model extends CI_Model{
         return true;
     }
     
-    public function create_blog($author, $heading, $content, $summary, $coverImage, $category_id, $sort, $slug, $posted_on, $tagArray){
+    public function create_blog($author, $heading, $content, $summary, $coverImage, $category_id, $sort, $slug, $posted_on, $created_at, $tagArray){
         $data = [
             'author'=>$author,
             'heading'=>$heading,
@@ -96,6 +96,7 @@ class Admin_model extends CI_Model{
             'category_id'=>$category_id,
             'slug'=>$slug,
             'posted_on'=>$posted_on,
+            'created_at' => $created_at,
             'sort'=>$sort
         ];
         $this->db->trans_start();

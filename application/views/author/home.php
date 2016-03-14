@@ -15,11 +15,18 @@
                     </div>
                     <div class="card-action">
                         <a target="_blank" href="<?= base_url(); ?>site/blog/<?= $b['id'].'/'.$b['slug']; ?>">Read More...</a>
+                        <a href="<?= base_url(); ?>author/blog-edit/<?= $b['id']; ?>">Edit<a>
+                        <p>Views: <span class="badge-circle"><?= $b['views']; ?></span></p>
                     </div>
             </div>
         </div>
 
         <?php endforeach; ?>
+
+        <?php else: ?>
+
+        <h4>You have not composed any blog yet... <a href="<?= base_url(); ?>author/compose">Start a blog now!</a></h4>
+
         <?php endif; ?>
     </div>
 </div>

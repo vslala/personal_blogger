@@ -320,7 +320,8 @@ $(document).ready(function(){
             $('.custom-modal').hide(200);
         });
         
-    CKEDITOR.replace('content');
+    CKEDITOR.replace('text_content');
+    // CKEDITOR.replace('text_content');
 
 
     deleteRelatedBlog();
