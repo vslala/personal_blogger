@@ -90,6 +90,34 @@
         <?= form_close(); ?>
     </div>
     
+
+</div>
+
+<div class="container">
+    <hr>
+    <div class="clear-fix"></div>
+    <div class="row">
+        <div class="save-image-container">
+            <div class="save-image-container__head">
+                <h4>Save Image To The Server</h4>
+            </div>
+            <div class="save-image-container__body">
+                <?= form_open('process/saveImage', ['id'=>'image_form']); ?>
+                    <div class="form-group">
+                        <input type="text" name="dir" id="dir" placeholder="new directory name">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="image_url" id="image_url" placeholder="Paste the Image URL here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm">Save Image</button>
+                    </div>
+                    <?= form_close(); ?>
+            </div>
+            <div class="save-image-container__footer" id="return_server_links"></div>
+        </div>
+    </div>
+</div>
 </div>
 
 

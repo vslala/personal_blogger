@@ -14,7 +14,7 @@
         <input type="hidden" value="<?= $blog[0]['id']; ?>" name="blogId" />
         <div class="cl m8">
             <div class="row">
-                <h4>Compose Your Blog</h4>
+                <h4>Edit Your Blog</h4>
                 <hr>
                 <div class="clear-fix"></div>
         <div class="cl s12 m4">
@@ -30,7 +30,7 @@
             <label>Write Your Blog Here...</label>
         </div>
         <div class="col s12">
-            <textarea name="blog_content" class="form-control form-control-content" id="content" maxlength="50000" placeholder="Start writing your blog..." validate><?= $blog[0]['content']; ?></textarea>
+            <textarea name="blog_content" class="form-control form-control-content" id="content" placeholder="Start writing your blog..." validate><?= $blog[0]['content']; ?></textarea>
         </div>
     </div>
 
@@ -72,10 +72,19 @@
 
     <div class="row">
         <div class="cl s12">
+            <label>Sort Order</label>
+        </div>
+        <div class="col s12">
+            <input type="text" name="sort" class="form-control" placeholder="Enter image url" value="<?= $blog[0]['sort']; ?>" autocomplete="off"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="cl s12">
             <label></label>
         </div>
         <div class="col s12">
-            <button type="submit" class="button button-primary">Create Blog</button>
+            <button type="submit" class="button button-primary">Update Blog</button>
         </div>
     </div>
         </div>
@@ -84,6 +93,34 @@
         <?= form_close(); ?>
     </div>
     
+</div>
+
+
+<div class="container">
+    <hr>
+    <div class="clear-fix"></div>
+    <div class="row">
+        <div class="save-image-container">
+            <div class="save-image-container__head">
+                <h4>Save Image To The Server</h4>
+            </div>
+            <div class="save-image-container__body">
+                <?= form_open('process/saveImage', ['id'=>'image_form']); ?>
+                    <div class="form-group">
+                        <input type="text" name="dir" id="dir" placeholder="new directory name">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="image_url" id="image_url" placeholder="Paste the Image URL here..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm">Save Image</button>
+                    </div>
+                    <?= form_close(); ?>
+            </div>
+            <div class="save-image-container__footer" id="return_server_links"></div>
+        </div>
+    </div>
+</div>
 </div>
 
 

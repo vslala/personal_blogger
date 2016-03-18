@@ -13,6 +13,20 @@ class Author extends CI_Controller{
         redirect('author/home');
     }
 
+    /**
+     * @param $username
+     */
+    public function profile($username){
+        $data['title'] = $username;
+        $data['setProfileActive'] = "active";
+        $userId = $this->admin_model->_getData('users', ['username' => $username], 'id');
+        $data['user'] = $this->admin_model->_getData('user_profiles', ['user_id' => $userId]);
+        $this->load->view('layout/_author_header', $data);
+        $this->load->view('layout/_author_top_nav', $data);
+        $this->load->view('author/profile', $data);
+        $this->load->view('layout/_author_footer', $data);
+    }
+
     public function home(){
         $data['title'] = 'Home';
         $data['setHomeActive'] = 'active';
@@ -40,7 +54,6 @@ class Author extends CI_Controller{
         $data['blog'] = $this->admin_model->get_blog($id);
         $data['blogId'] = $id;
         $data['heading'] = $data['blog'][0]['heading'];
-        $data['sort'] = $data['blog'][0]['sort'];
         $data['categories'] = $this->admin_model->get_categories();
 
         $data['scripts'] = ['http://cdn.ckeditor.com/4.5.1/full/ckeditor.js'];

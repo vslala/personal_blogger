@@ -22,6 +22,14 @@ class Admin_model extends CI_Model{
         }
     }
 
+    /**
+     * @param $username
+     * @param $password
+     * @param $firstName
+     * @param $lastName
+     * @param $isAdmin
+     * @return bool
+     */
     public function create_user($username, $password, $firstName, $lastName, $isAdmin){
         if ($isAdmin === 'true'){
             $isAdmin = true;
@@ -45,7 +53,102 @@ class Admin_model extends CI_Model{
             return false;
         }
     }
-    
+
+    /**
+     * @return bool
+     */
+    private function checkUserProfile(){
+        $query = $this->db->get_where('user_profiles', ['user_id' => $this->session->userdata('authorId')]);
+        $data = $query->result_array();
+
+        if (count ($data > 0))
+            return true;
+
+        return false;
+    }
+
+    /**
+     * @param $formData
+     */
+    public function editUserDetails($formData){
+
+        if ($this->checkUserProfile() ){
+            $type = $this->encrypt->decode($formData['type']);
+            $this->db->where('user_id', $this->session->userdata('authorId'));
+            switch ($type) {
+                case 'about':
+                    $this->db->update('user_profiles', ['about'=>$formData['about']]);
+                    break;
+                case 'summary':
+                    $this->db->update('user_profiles', ['summary'=>$formData['summary']]);
+                    break;
+                case 'email':
+                    $this->db->update('user_profiles', ['email'=>$formData['email']]);
+                    break;
+                case 'mobile':
+                    $this->db->update('user_profiles', ['mobile'=>$formData['mobile']]);
+                    break;
+                case 'featured_image':
+                    $folderPath = FCPATH.'img/users/'.$this->session->userdata('authorUsername');
+                    # get the file name from the database and delete the file from the location
+                    $fileName = $this->_getData('user_profiles', ['user_id' => $this->session->userdata('authorId')], 'featured_image');
+                    # Check if file exists on server
+                    if (file_exists(FCPATH.$fileName[0]['featured_image']))
+                        unlink(FCPATH.$fileName[0]['featured_image']);
+                    $fileName = "";
+
+                    # Check if the folder path exists otherwise create it
+                    if (! is_dir($folderPath)){
+                        mkdir($folderPath, 0777, true);
+                    }
+
+                    # Set the file configuration
+                    $config['upload_path'] = FCPATH.'img/users/'.$this->session->userdata('authorUsername');
+                    $config['allowed_types'] = 'gif|jpg|png';
+                    $config['encrypt_name'] = TRUE;
+
+                    $this->load->library('upload', $config);
+
+                    if ( ! $this->upload->do_upload('featured_image'))
+                    {
+                        $error = array('error' => $this->upload->display_errors());
+                        var_dump($error);die();
+                    }
+                    else
+                    {
+                        $data = array('upload_data' => $this->upload->data());
+                        $fileUrl = 'img/users/'.$this->session->userdata('authorUsername').'/'.$data['upload_data']['file_name'];
+                        $this->db->update('user_profiles', ['featured_image'=>$fileUrl]);
+                    }
+                    break;
+                default:
+                    return false;
+                    break;
+            }
+            $affectedRowsCount = $this->db->affected_rows();
+            if ($affectedRowsCount == 1)
+                return true;
+        }
+
+        $this->db->insert('user_profiles', ['user_id' => $this->session->authorId]);
+        editUserDetails($formData);
+
+    }
+
+    /**
+     * @param $tableName
+     * @param array $conditions
+     * @param bool $selection
+     * @return mixed
+     */
+    public function _getData($tableName, array $conditions = null, $selection = false){
+        if (! $selection){
+            $this->db->select(compact('selection'));
+        }
+        $query = $this->db->get($tableName, $conditions);
+        return $query->result_array();
+    }
+
     // public function auth($username, $password){
     //     if(md5($username) == md5('vs_lala')){
     //         if(md5($password) == md5('ucanthackitbuddy')){
@@ -71,6 +174,10 @@ class Admin_model extends CI_Model{
     }
 
     # Fetches all blogs related to a particular user
+    /**
+     * @param $userId
+     * @return mixed
+     */
     public function get_user_blogs($userId){
         $sql = 'SELECT blogs.* FROM blogs 
                 LEFT JOIN map_user_blogs
@@ -79,11 +186,34 @@ class Admin_model extends CI_Model{
         $query = $this->db->query($sql, [$userId]);
         return $query->result_array();
     }
-    
+
+    /**
+     * @param $id
+     * @param $heading
+     * @param $content
+     * @param $summary
+     * @param $coverImage
+     * @param $category_id
+     * @param $sort
+     * @return bool
+     */
     public function update_blog($id, $heading, $content, $summary, $coverImage, $category_id, $sort){
-        $sql = "UPDATE blogs SET heading=?, content=?, summary=?, cover_image=?, category_id=?, sort=? WHERE id=?";
-        $query = $this->db->query($sql, [$heading, $content, $summary, $coverImage, $category_id, $sort, $id]);
-        return true;
+        $data = [
+            'heading' => $heading,
+            'content' => $content,
+            'summary' => $summary,
+            'cover_image' => $coverImage,
+            'category_id' => $category_id,
+            'sort' => $sort
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('blogs', $data);
+        $affected_rows = $this->db->affected_rows();
+        
+        if ($affected_rows == 1)
+            return true;
+
+        return false;
     }
     
     public function create_blog($author, $heading, $content, $summary, $coverImage, $category_id, $sort, $slug, $posted_on, $created_at, $tagArray){

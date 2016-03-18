@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-image">
                         <img style="height: 300px;" class="responsive-img" src="<?= $b['cover_image']; ?>">
-                        <span class="card-title"><?= $b['heading']; ?></span>
+                        <span class="card-title" style="background-color: rgba(0,0,0, 0.7);"><?= $b['heading']; ?></span>
                     </div>
                     <div class="card-content">
                         <p><?= substr($b['summary'], 0, 167).'...'; ?></p>
