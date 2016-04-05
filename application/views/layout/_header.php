@@ -76,14 +76,13 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-        <!-- Optional theme -->
-       <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
         <!-- Google Plus Like Button -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         
         <!-- Bootstrap Core CSS -->
-        <?php echo link_tag('css/bootstrap.min.css'); ?>
+        <?php //echo link_tag('css/build/animate.css'); ?>
         <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
 
         <!-- Custom CSS -->

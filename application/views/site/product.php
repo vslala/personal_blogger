@@ -1,5 +1,5 @@
 <div class="sections">
-      <div class="container">
+      <div class="container bg-white">
         <div class="row">
         	<?php foreach ($products as $prod): ?>
           <div class="col-md-6">

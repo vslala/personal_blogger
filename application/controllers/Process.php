@@ -83,17 +83,18 @@ class Process extends CI_Controller{
 
     # Checks if the image is in the appropriate type or not
     private function check_image($image_url, $image_path = 'img/blogs/'){
+        # fetch file extension from the file and check for valid extension
         $file_extension = explode('.', $image_url);
         $file_extension = $file_extension[count($file_extension)-1];
         $uniq_name = uniqid();
         $image_location = $image_path.$uniq_name.'.';
 
         if ($file_extension == 'jpg'){
-            $image_location .= $file_extension; 
+            $image_location .= 'jpg';
         } else if($file_extension == 'jpeg'){
-            $image_location .= $file_extension;
+            $image_location .= 'jpg';
         } else if($file_extension == 'png'){
-            $image_location .= $file_extension;
+            $image_location .= 'jpg';
         } else if ($file_extension == 'gif'){
             $image_location .= $file_extension;
         } else{
@@ -121,10 +122,38 @@ class Process extends CI_Controller{
         if (!empty($image_location)){
             $file_contents = file_get_contents($imageUrl);
             file_put_contents($image_location, $file_contents);
+            # Delete The Image With Previous Name
+            # Search and delete file in the folder with the same name
+            $fileName = explode('/',$imageUrl);
+            $fileName = $fileName[count($fileName) - 1];
+            $files = scandir($imagePath);
+            foreach ($files as $f){
+                if ($f == $fileName){
+                    unlink($imagePath.$fileName);
+                    $fileNameWithoutExt = explode('.', $fileName);
+                    $fileNameWithoutExt = $fileNameWithoutExt[count($fileNameWithoutExt) - 2];
+                    unlink($imagePath.'thumbs/'.$fileNameWithoutExt.'_thumb.jpg');
+                }
+            }
+            # Get the name of the new Image
             $image_name = explode('/', $image_location);
             $image_name = $image_name[count($image_name) - 1];
             $image = $imagePath.$image_name;
 
+            if (! is_dir($imagePath.'/thumbs'))
+                mkdir($imagePath.'thumbs');
+            # Generate Thumbnail
+            $config['image_library'] = 'gd2';
+            $config['source_image']	= $image_location;
+            $config['new_image'] = $imagePath.'/thumbs/';
+            $config['create_thumb'] = TRUE;
+            $config['maintain_ratio'] = TRUE;
+            $config['width']	= 250;
+            $config['height']	= 108;
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+
+            # Setting the http path for the saved image
             $data = ['url'=>base_url().'img/blogs/'.$dir.'/'.$image_name];
             $this->output->set_header('Access-Control-Allow-Origin: *');
             $this->output->set_output(json_encode($data));
@@ -140,6 +169,21 @@ class Process extends CI_Controller{
         if ($this->input->is_ajax_request()){
             if ($flag)
                 return $formData['type']." saved";
+        }
+
+        redirect('author/profile/'.$this->session->userdata('authorUsername'));
+    }
+
+    public function addSocialHandle(){
+        $formData = $this->input->post();
+        if ($this->admin_model->addSocialHandle($formData)){
+            if ($this->input->is_ajax_request()){
+                if (true){
+                    $data = json_encode($formData);
+                    $this->output->set_output($data);
+                }
+            }
+
         }
 
         redirect('author/profile/'.$this->session->userdata('authorUsername'));

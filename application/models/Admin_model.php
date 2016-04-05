@@ -136,16 +136,60 @@ class Admin_model extends CI_Model{
     }
 
     /**
+     * description: if userID and handle website is already present then return true otherwise false
+     * @param $formData
+     * @return bool
+     */
+    public function checkSocialHandle($formData){
+        unset($formData['handle_username']);
+        $query = $this->db->get_where('user_social_handles', $formData);
+        $data = $query->result_array();
+        if (count ($data) == 1)
+            return true;
+        else
+            return false;
+    }
+    /**
+     * @param $formData
+     * @return bool
+     */
+    public function addSocialHandle($formData){
+        $formData = array_merge(['user_id'=>$this->session->userdata('authorId')], $formData);
+        # if user's particular social handle is already present then update else insert
+        if ($this->checkSocialHandle($formData))
+        {
+            $this->db->where(['user_id' => $formData['user_id'], 'social_handles_id' => $formData['social_handles_id']]);
+            $this->db->update('user_social_handles', $formData);
+        }
+        else
+        {
+            $this->db->insert('user_social_handles', $formData);
+        }
+
+        $affectedRowsCount = $this->db->affected_rows();
+        if ($affectedRowsCount == 1)
+            return true;
+        else
+            return false;
+    }
+
+    /**
      * @param $tableName
      * @param array $conditions
      * @param bool $selection
      * @return mixed
      */
-    public function _getData($tableName, array $conditions = null, $selection = false){
-        if (! $selection){
+    public function _getData($tableName, $conditions = null, $selection = null){
+
+        if (! empty($selection)){
             $this->db->select(compact('selection'));
         }
-        $query = $this->db->get($tableName, $conditions);
+
+        if (! empty($conditions)){
+            $query = $this->db->get_where($tableName, $conditions);
+        }else{
+            $query = $this->db->get($tableName);
+        }
         return $query->result_array();
     }
 
@@ -160,6 +204,16 @@ class Admin_model extends CI_Model{
     //         return false;
     //     }
     // }
+
+    public function getSocialHandles(){
+        $sql = "SELECT social_handles.*, user_social_handles.handle_username
+                FROM social_handles
+                LEFT JOIN user_social_handles
+                ON social_handles.id = user_social_handles.social_handles_id";
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
     
     public function get_blogs(){
         $this->db->order_by('sort', 'asc');
@@ -198,11 +252,15 @@ class Admin_model extends CI_Model{
      * @return bool
      */
     public function update_blog($id, $heading, $content, $summary, $coverImage, $category_id, $sort){
+        $createUrlSegments = explode('/', $coverImage);
+        $imageFolder = $createUrlSegments[count($createUrlSegments) - 2];
+        $folderPath = base_url().'img/blogs/'.$imageFolder.'/';
         $data = [
             'heading' => $heading,
             'content' => $content,
             'summary' => $summary,
             'cover_image' => $coverImage,
+            'cover_image_dir' => $folderPath,
             'category_id' => $category_id,
             'sort' => $sort
         ];
@@ -217,11 +275,15 @@ class Admin_model extends CI_Model{
     }
     
     public function create_blog($author, $heading, $content, $summary, $coverImage, $category_id, $sort, $slug, $posted_on, $created_at, $tagArray){
+        $createUrlSegments = explode('/', $coverImage);
+        $imageFolder = $createUrlSegments[count($createUrlSegments) - 2];
+        $folderPath = base_url().'img/blogs/'.$imageFolder.'/';
         $data = [
             'author'=>$author,
             'heading'=>$heading,
             'content'=>$content,
             'summary'=>$summary,
+            'cover_image_dir' => $folderPath,
             'cover_image'=>$coverImage,
             'category_id'=>$category_id,
             'slug'=>$slug,

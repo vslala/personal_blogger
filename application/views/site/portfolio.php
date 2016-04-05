@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-white">
     <div class="row">
         <div class="switch">
             <label>List view</label>
@@ -10,7 +10,7 @@
     <section class="list">
         <?php foreach ($projects as $p): ?>
             <!-- Projects -->
-            <div class="row">
+            <div class="row animated bounceInRight">
                 <div class="col-md-7">
                     <a href="<?= $p['project_image']; ?>" target="_popup">
                         <img class="img-responsive img-thumbnail" src="<?= $p['project_image']; ?>" alt="">
@@ -29,7 +29,7 @@
     </section>
 
     <section class="blocks">
-        <div class="row">
+        <div class="row animated bounceInRight">
             <?php foreach($projects as $p): ?>
                 <div class="col-md-6 col-sm-12">
                     <a href="<?= $p['link']; ?>" target="_blank" style="text-decoration: none;">

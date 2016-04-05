@@ -19,7 +19,7 @@ class Blog_Model extends CI_Model{
     }
     
     public function get_most_viewed_blog($blogCount = 3){
-        $this->db->select('id, heading, cover_image, slug, views');
+        $this->db->select('id, heading, summary, cover_image_dir, cover_image, slug, views');
         $this->db->order_by('views', 'DESC');
         $this->db->limit($blogCount);
         $query = $this->db->get('blogs');
@@ -27,7 +27,7 @@ class Blog_Model extends CI_Model{
     }
 
     public function get_recent_blogs($blogCount = 5){
-        $this->db->select('id, heading, cover_image, slug, views');
+        $this->db->select('id, heading, summary, cover_image_dir, cover_image, slug, views');
         $this->db->order_by('posted_on', 'desc');
         $this->db->limit($blogCount);
         $query = $this->db->get('blogs');
@@ -76,6 +76,26 @@ class Blog_Model extends CI_Model{
     public function get_blog_tags($blogId){
         $sql = "SELECT * FROM tags WHERE blog_id=?";
         $query = $this->db->query($sql, [$blogId]);
+        return $query->result_array();
+    }
+
+    /**
+     * @param $blogId
+     * @return mixed
+     */
+    public function get_user_id_from_blog_id($blogId){
+        $this->db->select('user_id');
+        $query = $this->db->get_where('map_user_blogs', ['blog_id' => $blogId]);
+        return $query->result_array();
+    }
+
+    public function getSocialHandles($userId){
+        $sql = "SELECT social_handles.*, user_social_handles.handle_username
+                FROM social_handles
+                LEFT JOIN user_social_handles
+                ON user_social_handles.social_handles_id = social_handles.id
+                WHERE user_social_handles.user_id = ?";
+        $query = $this->db->query($sql, [$userId]);
         return $query->result_array();
     }
     

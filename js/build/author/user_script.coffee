@@ -21,10 +21,8 @@ $ ->
 
     CKEDITOR.replace('blog_content')
 
-flashMessage = $('#flash_message');
 $('.userProfileForm').submit (event) ->
     event.preventDefault()
-    files = $('#file_upload').prop('files');
     url = $(this).attr('action')
     data = $(this).serialize()
 
@@ -33,12 +31,27 @@ $('.userProfileForm').submit (event) ->
         data: data
         type: 'POST'
         success: (data) ->
-            data = $.parseJSON(data)
-            $(flashMessage).html("Updated Successfully!");
-            null
+            Materialize.toast('Updated Successfully!!!', 5000, 'rounded')
         error: (xhr, status, msg) ->
             console.log(xhr)
-            null
+
+$('#social_handle_form').submit (event) ->
+    event.preventDefault()
+
+    $parentRow = $(this).parents(".row")
+    $parentRow = $parentRow[$parentRow.length - 1]
+    data = $(this).serialize()
+    url = $(this).attr('action')
+
+    $.ajax
+        url: url,
+        type: 'POST'
+        data: data
+        success: (data) ->
+          Materialize.toast('Data Saved Successfully! Refresh!', 5000, 'rounded')
+        error: (xhr, status, msg) ->
+            console.log(xhr.responseText)
+
 
 getCurrentDate ->
     date = new Date();

@@ -1,8 +1,8 @@
 <!-- Main Content -->
-<div class="container">
+<div class="container bg-white">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <form role="form" class="form-inline" action="http://www.varunshrivastava.in/site/searchResults" id="cse-search-box">
+            <form role="form" class="form-inline" action="http://www.varunshrivastava.in/site/searchResults" id="cse-search-box" style="margin-top: 2em;">
       <div class="">
         <input type="hidden" name="cx" value="partner-pub-3963876904167425:8690882599" />
         <input type="hidden" name="cof" value="FORID:10" />
@@ -13,7 +13,7 @@
         <button type="submit" class="btn btn-green" name="sa">search</button>
       </div>
     </form>
-    <hr />
+  
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
     <script type="text/javascript">google.load("elements", "1", {packages: "transliteration"});</script>
     <script type="text/javascript" src="http://www.google.com/cse/t13n?form=cse-search-box&t13n_langs=en"></script>
@@ -37,13 +37,13 @@
                             ?>
                         </p>
                     </div>
-                    <hr>
+
                 <?php endforeach; ?>
             <?php endif; ?>
             
             <hr>
             <!-- Pager -->
-            <ul class="pager">
+            <ul class="pager" style="margin-bottom: 2em;">
                 <li class="next">
                     <a href="<?php if(isset($count)){ echo site_url('site/index/'.$count); } else { echo site_url('site/index/'. 0); } ?>">Older Posts &rarr;</a>
                 </li>

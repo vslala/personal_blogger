@@ -19,8 +19,9 @@ class Author extends CI_Controller{
     public function profile($username){
         $data['title'] = $username;
         $data['setProfileActive'] = "active";
-        $userId = $this->admin_model->_getData('users', ['username' => $username], 'id');
-        $data['user'] = $this->admin_model->_getData('user_profiles', ['user_id' => $userId]);
+        $userId = $this->admin_model->_getData('users', (['username' => $username]), 'id');
+        $data['user'] = $this->admin_model->_getData('user_profiles', ['user_id' => $userId[0]['id']]);
+        $data['socialHandles'] = $this->admin_model->getSocialHandles();
         $this->load->view('layout/_author_header', $data);
         $this->load->view('layout/_author_top_nav', $data);
         $this->load->view('author/profile', $data);

@@ -9,9 +9,6 @@
 
 
 <div class="container">
-    <div class="row" id="flash_message">
-
-    </div>
     <div class="row">
         <div class="col m6" class="left-section">
             <div class="row">
@@ -69,28 +66,60 @@
                     <?= form_close(); ?>
                 </div>
             </div>
-            <div class="row">
-                <label>Facebook Profile Url</label>
-                <p><a href="http://facebook.com/varun.shrivastava.3">varun.shrivastava.3</a></p>
-            </div>
-            <div class="row">
-                <label>Twitter Username</label>
-                <p><a href="http://twitter.com/vs_shrivastava">vs_shrivastava</a></p>
-            </div>
-            <div class="row">
-                <label>LinkedIn Username</label>
-                <p><a href="">shrivastavavarun</a></p>
-            </div>
-            <div class="row">
-                <label>Google Plus</label>
-                <p><a href="">Varunshrivastava007</a></p>
-            </div>
+
 
         </div>
-        <div class="col m6">
+        <div class="col s12 m6">
             <div class="image-banner">
-                <img src="<?= base_url().$featuredImage ?>" class="image-banner__banner-img"></img>
+                <?php if (! empty($featuredImage)): ?>
+                    <img src="<?= base_url().$featuredImage ?>" class="image-banner__banner-img responsive-img" />
+                    <?php else: ?>
+                    <h4>You haven't Uploaded Any Image Yet!!!</h4>
+                <?php endif; ?>
             </div>
+        </div>
+    </div>
+
+    <!-- Social Handle Section -->
+    <div class="row">
+        <div class="cl s12 m6 l6">
+            <section class="social-handle">
+                <div class="social-handle__panel">
+                    <div class="social-handle_panel__header">
+                        <h3>Add Social Handle</h3>
+                    </div>
+                    <div class="social-handle_panel__body">
+                        <?= form_open('process/addSocialHandle', ['id'=>'social_handle_form']); ?>
+                        <?php if (isset($socialHandles[0])): ?>
+                            <select name="social_handles_id" class="form-control">
+                            <?php foreach ($socialHandles as $sh): ?>
+                            <option value="<?= $sh['id'] ?>"><?= $sh['name'] ?></option>
+                            <?php endforeach; ?>
+                            </select>
+                        <?php endif; ?>
+                        <div class="row">
+                            <label for="handle_username">Corresponding Username</label>
+                            <br/>
+                            <input type="text" name="handle_username" class="form-control"/>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="button button-primary">Add Social Handle</button>
+                        </div>
+                        <?= form_close(); ?>
+                    </div>
+                    <div class="social-handle_panel__footer">
+                        <div class="row">
+                            <?php if (isset ($socialHandles[0])): ?>
+                                <?php foreach ($socialHandles as $sh): ?>
+                                    <label for="<?= $sh['name'] ?>"><?= $sh['name'] ?></label><br />
+                                    <a href="<?= $sh['website'].$sh['handle_username'] ?>"><?= $sh['handle_username'] ?></a><br />
+
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </div>

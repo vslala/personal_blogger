@@ -423,6 +423,19 @@ class Admin extends CI_Controller{
             $image_name = $image_name[count($image_name) - 1];
             $image = $imagePath.$image_name;
 
+            if (! is_dir($imagePath.'/thumbs'))
+                mkdir($imagePath.'thumbs');
+            # Generate Thumbnail
+            $config['image_library'] = 'gd2';
+            $config['source_image']	= $image_location;
+            $config['new_image'] = $imagePath.'/thumbs/';
+            $config['create_thumb'] = TRUE;
+            $config['maintain_ratio'] = TRUE;
+            $config['width']	= 250;
+            $config['height']	= 108;
+            $this->load->library('image_lib', $config);
+            $this->image_lib->resize();
+
             $data = ['url'=>base_url().'img/blogs/'.$dir.'/'.$image_name];
             $this->output->set_header('Access-Control-Allow-Origin: *');
             $this->output->set_output(json_encode($data));
@@ -484,17 +497,18 @@ class Admin extends CI_Controller{
 
     # Checks if the image is in the appropriate type or not
     private function check_image($image_url, $image_path = 'img/blogs/'){
+        # fetch file extension from the file and check for valid extension
         $file_extension = explode('.', $image_url);
         $file_extension = $file_extension[count($file_extension)-1];
         $uniq_name = uniqid();
         $image_location = $image_path.$uniq_name.'.';
 
         if ($file_extension == 'jpg'){
-            $image_location .= $file_extension; 
+            $image_location .= 'jpg';
         } else if($file_extension == 'jpeg'){
-            $image_location .= $file_extension;
+            $image_location .= 'jpg';
         } else if($file_extension == 'png'){
-            $image_location .= $file_extension;
+            $image_location .= 'jpg';
         } else if ($file_extension == 'gif'){
             $image_location .= $file_extension;
         } else{

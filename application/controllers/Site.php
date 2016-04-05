@@ -85,7 +85,6 @@ class Site extends CI_Controller{
         $data['about'] = $this->blog_model->get_about();
         $data['projects'] = $this->blog_model->get_projects();
 
-        $this->output->cache(70560);
         
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
@@ -204,8 +203,8 @@ class Site extends CI_Controller{
         $heading = str_replace('-', ' ', $heading);
         $data['title'] = $heading;
         $data['blog'] = $this->blog_model->get_blog($id);
-        $data['mostViewed'] = $this->blog_model->get_most_viewed_blog(5);
-        $data['recentPosts'] = $this->blog_model->get_recent_blogs(5);
+        $data['mostViewed'] = $this->blog_model->get_most_viewed_blog(4);
+        $data['recentPosts'] = $this->blog_model->get_recent_blogs(4);
         if(isset($data['blog']['0']['posted_on']))
             $date_posted = $data['blog']['0']['posted_on'];
         else
@@ -214,6 +213,13 @@ class Site extends CI_Controller{
         $data['cover_subheading'] = "Posted by <a href='#'>".$data['blog'][0]['author']."</a> ".$date_posted;
         $data['uri'] = current_url();
         $data['tags'] = $this->blog_model->get_blog_tags($data['blog'][0]['id']);
+        $userId = $this->blog_model->get_user_id_from_blog_id($id);
+        if (!empty($userId)){
+            $data['authorProfile'] = $this->admin_model->_getData('user_profiles', ["user_id"=>$userId[0]['user_id']]);
+            $data['socialHandles'] = $this->blog_model->getSocialHandles($userId[0]['user_id']);
+        }
+        $data['categories'] = $this->blog_model->get_categories();
+
 
         // $related_blogs = $this->blog_model->get_related_blog_id($id);
         // $blogs = array();
@@ -308,43 +314,6 @@ class Site extends CI_Controller{
         $this->load->view('layout/_top_nav', $data);
         $this->load->view('layout/_cover_layout', $data);
         $this->load->view('site/portfolio',  $data);
-        $this->load->view('layout/_footer', $data);
-    }
-
-    
-    public function listview($listId = null){
-        $this->load->helper('form');
-        $this->load->model('sap_model');
-        if (! empty($listId))
-            $data['listId'] = $listId;
-        $data['listItems'] = $this->sap_model->getListItems($listId);
-        
-        $data['title'] = "Couples List";
-        $data['scripts'] = [
-            'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js'
-        ];
-
-        $this->load->view('layout/_header', $data);
-        $this->load->view('layout/_top_nav', $data);
-        $this->load->view('sap/list',  $data);
-        $this->load->view('layout/_footer', $data);
-    }
-
-    public function getListItems($listId = null){
-        if (! empty($listId))
-            $data['listId'] = $listId;
-        $data['listItems'] = $this->sap_model->getListItems($listId);
-        $data['scripts'] = [
-            'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js',
-            'https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js'
-        ];
-
-        $this->load->view('layout/_header', $data);
-        $this->load->view('layout/_top_nav', $data);
-        $this->load->view('sap/list',  $data);
         $this->load->view('layout/_footer', $data);
     }
 

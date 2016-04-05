@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-white">
 	<div class="row first-row">		
 		<div id='cover_carousel' class="carousel slide" data-ride="carousel" >
 			<!-- Indicators -->

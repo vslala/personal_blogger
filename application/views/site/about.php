@@ -1,20 +1,20 @@
 <!-- Main Content -->
     <!--<div class="container">-->
-        <div class="row">
+        <div class="row bg-white">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <?php if(isset($about[0])): ?>
                     <?= $about[0]['about_me']; ?>
                 <?php endif; ?>
             </div>
         </div>
-        <br>
-        <div class="row">
+        <div class="row bg-white">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <button data-toggle="modal" data-target="#my_project_modal" class="btn btn-default">My Projects</button>
                 <a href="<?= base_url(); ?>docs/0203CS121043_RESUME.pdf" class="btn btn-default">My Resume</a>
                 <!--<a href="#" class="btn btn-default">Resume</a>
                 <a href="#" class="btn btn-default">My Websites</a>-->
             </div>
+            <div class="give-freedom"></div>
         </div>
 
 
