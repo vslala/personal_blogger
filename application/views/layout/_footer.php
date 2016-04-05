@@ -1,16 +1,29 @@
-<!-- Footer -->
-    <footer>
+<?php 
+    $defaultDescription = 'Varun Shrivastava is a passionate programmer and a great learner. He always looks for opportunities to interact with new people and make new friends. This is his website where he writes about different stuffs.';
+?>
+<hr>
+<!-- Footer --> 
+
+    <footer class="bg-black">
+
+        <?php 
+            if (isset($footerContent)){
+                include FCPATH.'application/views/layout/_footer_content.php';
+            } 
+
+        ?>
+
         <div class="container">
             <?php if(isset($categories)): ?>
             <div class="row">
                 <div class="col-md-12">
                     <center>
-                    <label>Categories: </label>
+                    <label class="header uppercase white-text">Categories: </label>
                     <?php foreach ($categories as $c): ?>
                     <a href="<?= base_url(); ?>index.php/site/category/<?= $c['id'].'/'.$c['name']; ?>">
-                        <label class="label label-info" id="tags">
+                        <label class="label label-danger" id="tags">
                             <?= $c['name']; ?>
-                            <div class="badge"><?= $c['total']; ?></div>
+                            <div class="badge" style="background-color: crimson;"><?= $c['total']; ?></div>
                         </label>
                     </a>
                     <?php endforeach; ?>
@@ -25,37 +38,37 @@
                         <li>
                             <a target="_blank" href="https://twitter.com/vs_shrivastava">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                    <!-- <i class="fa fa-circle fa-stack-2x"></i> -->
+                                    <i class="fa fa-twitter-square fa-stack-2x"></i>
                                 </span>
                             </a>
                         </li>
                         <li>
                             <a target="_blank" href="https://www.facebook.com/varun.shrivastava.3">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    <!-- <i class="fa fa-circle fa-stack-2x"></i> -->
+                                    <i class="fa fa-facebook-square fa-stack-2x"></i>
                                 </span>
                             </a>
                         </li>
                         <li>
                             <a target="_blank" href="https://www.github.com/vslala">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    <!-- <i class="fa fa-circle fa-stack-2x"></i> -->
+                                    <i class="fa fa-github-square fa-stack-2x"></i>
                                 </span>
                             </a>
                         </li>
                         <li>
                             <a target="_blank" href="https://in.linkedin.com/in/shrivastavavarun">
                                 <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    <!-- <i class="fa fa-circle fa-stack-2x"></i> -->
+                                    <i class="fa fa-linkedin-square fa-stack-2x"></i>
                                 </span>
                             </a>
                         </li>
                     </ul>
-                    <p class="copyright text-muted">Copyright &copy; Made by Varun Shrivastava</p>
+                    <p class="copyright text-muted white-text">Copyright &copy; 2016 Made by Varun Shrivastava</p>
                 </div>
             </div>
         </div>

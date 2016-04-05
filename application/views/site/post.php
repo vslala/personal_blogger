@@ -16,7 +16,7 @@
             </div>
             
             <div class="col-md-3">
-                <form role="form" class="form-inline box" action="http://varunshrivastava/site/searchResults" id="cse-search-box">
+                <form role="form" class="form-inline box" action="http://varunshrivastava.in/site/searchResults" id="cse-search-box">
                   <div class="">
                     <input type="hidden" name="cx" value="partner-pub-3963876904167425:8690882599" />
                     <input type="hidden" name="cof" value="FORID:10" />
@@ -45,7 +45,7 @@
                 <p itemprop="articleBody"><?= $blog[0]['content']; ?></p>
 
                         <?php if (isset($authorProfile[0])): ?>
-
+                        <hr>
                     <section class="author-detail-section bg-white">
                         <p>
                         <div class="row">
@@ -99,8 +99,6 @@
                             <!-- Begin MailChimp Signup Form -->
                             <style type="text/css">
                                 #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif;}
-                                .subscribe-btn {background-color: #ED3D0C;  width: 100%;  color: #ffffff;  margin-top: 1em;  height: 50px;  padding: 13px;  font-weight: bolder;  font-family: Helvetica, sans-serif;  cursor: pointer;  border-color: 2px solid #ED3D0C; }  .subscribe-btn:hover {
-                                border-color: #ED3D0C;    background-color: transparent;    color: #ED3D0C; }
                                 /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
                                    We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
                             </style>

@@ -230,6 +230,7 @@ class Site extends CI_Controller{
         // }
 
         // $data['related_blogs'] = $blogs;        
+        $data['footerContent'] = "set";
 
         $cookie_val = get_cookie('blog'.$id);
         if($cookie_val == '' || $cookie_val == null){

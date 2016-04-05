@@ -1,3 +1,6 @@
+<?php
+    $defaultDescription = 'Varun Shrivastava is a passionate programmer and a great learner. He always looks for opportunities to interact with new people and make new friends. This is his website where he writes about different stuffs.';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +53,7 @@
         <meta name="twitter:description" content="<?php if(isset($blog[0]['summary'])){echo $blog[0]['summary'];}else{echo substr($blog[0]['content'],0,150).'...';} ?>" />
         <meta name="twitter:image" content="<?php if(isset($blog[0]['cover_image'])){echo html_escape($blog[0]['cover_image']);} ?>" />
         <?php else: ?>
-        <meta name="description" content="Varun Shrivastava is a passionate programmer and a great learner. He always looks for opportunities to interact with new people and make new friends. This is his website where he writes about different stuffs." />
+        <meta name="description" content="<?= $defaultDescription; ?>" />
         <?php endif; ?>
         <?php if(isset($products[0]['title'])): ?>
         <meta property="og:title" content="<?= $products[0]['title']; ?>" />
@@ -156,13 +159,18 @@
 }(document, 'script', 'facebook-jssdk'));</script>-->
 
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+if (document.location.hostname.search("http://localhost/varunshrivastava") !== -1) {
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-66019195-2', 'auto');
   ga('send', 'pageview');
+
+}
+  
 
 </script>
 
