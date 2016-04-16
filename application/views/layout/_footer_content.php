@@ -36,6 +36,12 @@
                 <a target="_black" href="//www.linkedin.com/shareArticle?mini=true&url=<?= current_url(); ?>&summary=<?= $defaultDescription; ?>&source=http://www.varunshrivastava.in/"><i class="fa fa-linkedin-square fa-2x footer-icons"></i></a>
                 <a target="_black" href=""><i class="fa fa-pinterest-square fa-2x footer-icons"></i></a>
             </p>
+
+            <p class="white-text heading">
+                Get yourself a Free Web Hosting Now!
+                <a href="http://api.hostinger.in/redir/12287390" target="_blank"><img src="http://www.hostinger.in/banners/en/hostinger-125x125-powered-2.gif" alt="Free Hosting" border="0" width="125" height="125" /></a>
+            </p>
+
         </div>
     </div>
 </div>

@@ -105,7 +105,7 @@
                             <div id="mc_embed_signup">
                             <form action="//varunshrivastava.us12.list-manage.com/subscribe/post?u=a5d2749781d67dd9269ec57d6&amp;id=ffd926e444" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
                                 <div id="mc_embed_signup_scroll">
-                                <label for="mce-EMAIL">Get the latest posts sent to your e-mail directly so you can interact with out community.</label>
+                                <label for="mce-EMAIL">Get the latest posts sent to your e-mail directly so you can interact with our community.</label>
                                 <input type="email" value="" name="EMAIL" class="form-control" id="mce-EMAIL" placeholder="email address" required>
                                 <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                                 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_a5d2749781d67dd9269ec57d6_ffd926e444" tabindex="-1" value=""></div>
@@ -266,7 +266,7 @@
         <div class="row">
             <?php if(isset($recentPosts[0])): ?>    
                 <div class="col-md-12" style="margin-top: 10px;margin-bottom:10px;">
-                    <span class="heading"><strong style="color: crimson;">Trending</strong> Posts</span>
+                    <span class="heading"><strong style="color: crimson;">Latest</strong> Posts</span>
                 </div>
                     <!-- ---- Single Blog View Section -->
                         <?php 
@@ -318,7 +318,7 @@
             <?php if (isset($mostViewed[0])): ?>
 
             <div class="col-md-12" style="margin-top: 10px;margin-bottom:10px;">
-                <span class="heading"><strong style="color: crimson;">Latest</strong> Posts</span>
+                <span class="heading"><strong style="color: crimson;">Trending</strong> Posts</span>
             </div>
             
                     <?php foreach ($mostViewed as $mv): ?>
