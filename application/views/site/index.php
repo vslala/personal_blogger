@@ -20,7 +20,7 @@
             <?php if (isset($blogs)): ?>
                 <?php foreach ($blogs as $b): ?>
                     <div class="post-preview">
-                        <a href="<?= site_url('site/blog').'/'.$b['id'].'/'.  url_title($b['heading']); ?>">
+                        <a href="<?= base_url().url_title($b['heading']); ?>">
                             <h2 class="post-title">
                                 <?= $b['heading']; ?>
                             </h2>
