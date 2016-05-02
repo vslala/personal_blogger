@@ -55,13 +55,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['offer/(:any)'] = 'site/offers/$1';
 $route['offers'] = 'site/offers';
+$route['(:any)'] = 'site/newBlog/$1';
 
 $route['author/login'] = 'site/authorLogin';
 $route['author/blog-edit/(:num)'] = 'author/blogEdit/$1';
 $route['list'] = 'site/listview';
 $route['list/(:any)'] = 'site/listview/$1';
 $route['default_controller'] = 'site/index';
-$route['(:any)'] = 'site/index/$1';
+$route['(:num)'] = 'site/index/$1';
 $route['sitemap.xml'] = "site/sitemap";
 $route['google7d2ff02ca99d8ba7.html'] = 'site/google7d2ff02ca99d8ba7';
 

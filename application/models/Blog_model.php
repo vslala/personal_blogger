@@ -4,6 +4,18 @@ class Blog_Model extends CI_Model{
     public function __construct(){
         $this->load->database();
     }
+
+    // fetch blogs by slug
+    public function get_new_blog ($slug) {
+        $blogs = $this->db->get_where ('blogs', ['slug'=>$slug]);
+
+        if (! empty($blogs->result_array()))
+            return $blogs->result_array();
+
+        $heading = str_replace('-', ' ', $slug);
+        $blogs = $this->db->get_where ('blogs', ['heading' => $heading]);
+        return $blogs->result_array();
+    }
     
     public function get_blogs($count = 0) {
         $u = $count;

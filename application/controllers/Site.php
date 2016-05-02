@@ -194,8 +194,54 @@ class Site extends CI_Controller{
         
         return true;
     }
+
+    public function newBlog ($slug) { 
+        $heading = str_replace('-', ' ', $slug);
+        $data['title'] = $heading;
+        $this->load->helper ('cookie');
+        $date_posted = NULL;
+
+        $data['blog'] = $this->blog_model->get_new_blog($slug); 
+        $id = $data['blog'][0]['id'];
+        $data['mostViewed'] = $this->blog_model->get_most_viewed_blog(4);
+        $data['recentPosts'] = $this->blog_model->get_recent_blogs(4);
+        if(isset($data['blog']['0']['posted_on']))
+            $date_posted = $data['blog']['0']['posted_on'];
+        else
+            $date_posted = $data['blog'][0]['created_at'];
+        $data['cover_heading'] = $data['blog'][0]['heading'];
+        $data['cover_subheading'] = "Posted by <a href='#'>".$data['blog'][0]['author']."</a> ".$date_posted;
+        $data['uri'] = current_url();
+        $data['tags'] = $this->blog_model->get_blog_tags($data['blog'][0]['id']);
+        $userId = $this->blog_model->get_user_id_from_blog_id($id);
+        if (!empty($userId)){
+            $data['authorProfile'] = $this->admin_model->_getData('user_profiles', ["user_id"=>$userId[0]['user_id']]);
+            $data['socialHandles'] = $this->blog_model->getSocialHandles($userId[0]['user_id']);
+        }
+        $data['categories'] = $this->blog_model->get_categories();
+
+        $data['footerContent'] = "set"; // sets footer for blog page
+
+        $cookie_val = get_cookie('blog'.$id);
+        if($cookie_val == '' || $cookie_val == null){
+            set_cookie('blog'.$id, $id, (60*60*24*7));
+            $data['blog_views'] = $this->blog_model->increment_blog_view($id);
+        }else{
+            $data['blog_views'] = $this->blog_model->get_blog_views($id);
+        }
+
+        $data['css'] = ['https://cdn-images.mailchimp.com/embedcode/slim-10_7.css'];
+        
+        $this->load->view('layout/_header', $data);
+        $this->load->view('layout/_top_nav', $data);
+        $this->load->view('layout/_post_cover', $data);
+        $this->load->view('site/post',  $data);
+        $this->load->view('layout/_footer', $data);
+    }
     
     public function blog($id, $heading){
+        // with 301 redirect
+        redirect($heading, 'location', 301);
         $this->load->helper('cookie');
         $this->load->library('markdown');
         
@@ -230,7 +276,7 @@ class Site extends CI_Controller{
         // }
 
         // $data['related_blogs'] = $blogs;        
-        $data['footerContent'] = "set";
+        $data['footerContent'] = "set"; // sets footer for blog page
 
         $cookie_val = get_cookie('blog'.$id);
         if($cookie_val == '' || $cookie_val == null){
