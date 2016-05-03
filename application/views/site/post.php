@@ -129,8 +129,6 @@
                             <label>Page Stats</label>
                         </div>
                         <div class="section__body">
-                            <span class="box small-heading">Unique Page Views: </span><span><?= $blog_views[0]['views']; ?></span>
-                            <br>
                             <span class="small-heading box">
                                 Posted by: </span><span><?= $blog[0]['author']; ?>
                             </span>
