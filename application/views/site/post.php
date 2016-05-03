@@ -42,7 +42,7 @@
                 <div class="bg-white">
 
             <!-- <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1"> -->
-                <p itemprop="articleBody"><?= $blog[0]['content']; ?></p>
+                <div itemprop="articleBody" class="article-content"><?= $blog[0]['content']; ?></div>
 
                         <?php if (isset($authorProfile[0])): ?>
                         <hr>
@@ -186,6 +186,26 @@
                             </form>
 
                             
+                        </div>
+                    </div>
+                </div>
+                <!-- Advertisement -->
+                <div class="right-section row">
+                    <div class="section">
+                        <div class="section__header">
+                            <label>What Others Are Looking At</label>
+                        </div>
+                        <div class="section__body">
+                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- Between Ads -->
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-3963876904167425"
+                                 data-ad-slot="5128214590"
+                                 data-ad-format="auto"></ins>
+                            <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>                            
                         </div>
                     </div>
                 </div>

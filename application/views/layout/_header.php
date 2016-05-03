@@ -98,7 +98,7 @@
         <!-- Custom CSS -->
         <?= link_tag('css/clean-blog.min.css'); ?>
         <?= link_tag('css/style.css'); ?>
-        <?= link_tag('css/main.css'); ?>
+        <?= link_tag('css/main.min.css'); ?>
         <!--<link href="css/clean-blog.min.css" rel="stylesheet" >-->
         <!--<link href="css/style.css" rel="stylesheet" />-->
 
