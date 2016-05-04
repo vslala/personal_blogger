@@ -296,7 +296,7 @@
                                 }else {
                                     $slug = url_title($rp['heading']);
                                 }
-                                $blogUrl = base_url().'site/blog/'.$rp['id'].'/'.$slug;
+                                $blogUrl = base_url().$slug;
 
                                 # Fetching the image name without extension
                                 $coverImageSegments = explode('/', $rp['cover_image']);
@@ -347,7 +347,7 @@
                             else
                                 $slug = url_title($mv['heading']);
 
-                            $blogUrl = base_url().'site/blog/'.$mv['id'].'/'.$slug;
+                            $blogUrl = base_url().$slug;
                         # Fetching the image name without extension
                         $coverImageSegments = explode('/', $mv['cover_image']);
                         $fileNameWithoutExt = $coverImageSegments[ count ($coverImageSegments) - 1];

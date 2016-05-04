@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // $config['base_url'] = 'http://varunshrivastava.azurewebsites.net/';
-$config['base_url'] = 'http://www.varunshrivastava.in';
+$config['base_url'] = 'http://localhost/projects/personal_blogger/';
 
 /*
 |--------------------------------------------------------------------------
