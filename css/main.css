@@ -4210,6 +4210,12 @@ hr {
     .right-border-seperation {
       border: 0px; } }
 
+.left-border-separation {
+  border-left: 1.5em solid #C8CBCC; }
+  @media screen and (max-width: 400px) {
+    .left-border-separation {
+      border: 0px; } }
+
 .section {
   float: center;
   border-bottom: 4px solid #C8CBCC;

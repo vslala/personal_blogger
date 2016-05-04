@@ -1,7 +1,8 @@
+
     <!-- Main Content -->
     <div class="container">
         <div class="row">
-            <div class="col-md-6" id="contact_div">
+            <div class="col-md-6 bg-white" id="contact_div">
                 <p>Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
                 <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
                 <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
@@ -43,7 +44,7 @@
                     </div>
                 <?= form_close(); ?>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 left-border-seperation">
                 <a href="https://www.google.com/maps/d/edit?mid=zLSElJdFKt8U.kQj90gSeQZG8&usp=sharing" target="_blank">
                     <img class="img img-thumbnail" src="<?= base_url(); ?>img/my_location.png" />
                 </a>

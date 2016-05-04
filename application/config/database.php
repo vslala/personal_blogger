@@ -65,9 +65,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'u106462404_vs',
-	'password' => 'JQp=VxUclSqS7yA',
-	'database' => 'u106462404_blog',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'blogger',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

@@ -4087,6 +4087,13 @@ $offerBgGreyscale: "http://localhost/varunshrivastava/img/offer-background-2.jpg
     }
 }
 
+.left-border-separation {
+  border-left: 1.5em solid $bg-color;
+  @media screen and (max-width: 400px) {
+        border: 0px;
+    }
+}
+
 .right-section {}
 
 .section {

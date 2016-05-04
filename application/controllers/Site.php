@@ -152,8 +152,7 @@ class Site extends CI_Controller{
     }
     
     public function contact(){
-        $this->load->helper('form_helper');
-        
+        $this->load->helper('form');
         $data['title'] = 'Varun Shrivastava - Contact Me';
         $data['setHomeActive'] = '';
         $data['setAboutActive'] = '';
