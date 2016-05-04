@@ -354,7 +354,7 @@ class Site extends CI_Controller{
         if(count($data['layout']) <= 0)
             $data['layout'] = NULL;
 
-        $this->output->cache(70560);
+        // $this->output->cache(70560);
         
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
