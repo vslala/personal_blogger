@@ -160,7 +160,7 @@ class Site extends CI_Controller{
         $data['layout'] = $this->blog_model->get_layout('contact');
         $data['about'] = $this->blog_model->get_layout('contact');
 
-        $this->output->cache(70560);
+        // $this->output->cache(70560);
         
         $this->load->view('layout/_header', $data);
         $this->load->view('layout/_top_nav', $data);
